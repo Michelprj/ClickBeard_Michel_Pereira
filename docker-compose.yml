@@ -1,0 +1,43 @@
+version: '3.9'
+
+services:
+  backend:
+    container_name: clickbeard_backend
+    build: ./backend
+    ports:
+      - 3003:3003
+    working_dir: /backend
+    command: npm run start:dev
+    volumes: 
+      - ./backend:/backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - APP_PORT=3003
+      - JWT_SECRET=jwt_secret
+      - DB_USER=postgres
+      - DB_PASS=123456
+      - DB_HOST=db
+      - DB_PORT=5432
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3003"]
+      timeout: 10s
+      retries: 5
+
+  db:
+    image: postgres
+    container_name: db
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=123456
+    restart: 'always'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+    cap_add:
+      - SYS_NICE
