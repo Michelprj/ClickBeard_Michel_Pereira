@@ -8,12 +8,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
-  const origins = 'http://localhost:3000' || 'http://localhost:3001';
+  const origins = ['http://localhost:3000', 'http://localhost:3001'];
 
   app.enableCors({
     credentials: true,
     allowedHeaders:
-      'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Observe, X-App-verison, Authorization',
+      'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Observe, X-App-version, Authorization',
     origin: origins,
   });
 
@@ -30,7 +30,7 @@ async function bootstrap() {
     }),
   );
 
-  await app.listen(3003);
+  await app.listen(process.env.PORT || 3003);
 }
 
 bootstrap();
