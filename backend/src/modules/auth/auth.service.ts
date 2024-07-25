@@ -13,11 +13,7 @@ export class AuthService {
   ) {}
 
   async signin(signinDto: SigninDto) {
-    console.log('signinDto', signinDto.email);
-
     const user = await this.userService.findByEmail(signinDto.email);
-
-    console.log('user', user);
 
     if (!user) {
       throw new UnauthorizedException('Invalid email entered.');
