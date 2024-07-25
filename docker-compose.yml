@@ -7,7 +7,7 @@ services:
     ports:
       - 3003:3003
     working_dir: /backend
-    command: npm run start:dev
+    command: /bin/sh -c "npm run seed && npm run start:dev"
     volumes: 
       - ./backend/src:/backend/src
     depends_on:
