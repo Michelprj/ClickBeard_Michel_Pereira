@@ -10,6 +10,7 @@ import { AppController } from './app.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './modules/user/entities/user.entity';
 import { BarberModule } from './modules/barber/barber.module';
+import { BookingModule } from './modules/booking/booking.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { BarberModule } from './modules/barber/barber.module';
     AuthModule,
     UserModule,
     BarberModule,
+    BookingModule,
   ],
   controllers: [AppController],
   providers: [

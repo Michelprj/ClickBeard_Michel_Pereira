@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Booking } from '../../booking/entities/booking.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('barber')
 export class Barber {
@@ -16,4 +17,7 @@ export class Barber {
 
   @Column('text', { array: true })
   specialty: string[];
+
+  @OneToMany(() => Booking, (booking) => booking.barber)
+  bookings: Booking[];
 }
