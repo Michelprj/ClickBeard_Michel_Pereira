@@ -51,7 +51,7 @@ export class BarberService {
     await this.barberRepository.delete(id);
   }
 
-  async isAdminLogged(req: any, method: string) {
+  private async isAdminLogged(req: any, method: string) {
     const userLogged = await this.userService.findOne(req.userId);
 
     if (!userLogged.isAdmin) {
@@ -61,13 +61,13 @@ export class BarberService {
     }
   }
 
-  haveCredentials(credentialsDto: CreateBarberDto | UpdateBarberDto) {
+  private haveCredentials(credentialsDto: CreateBarberDto | UpdateBarberDto) {
     if (!credentialsDto) {
       throw new BadRequestException('Missing required fields');
     }
   }
 
-  async barberFound(id: number) {
+  private async barberFound(id: number) {
     const barber = await this.findOne(id);
 
     if (!barber) {
