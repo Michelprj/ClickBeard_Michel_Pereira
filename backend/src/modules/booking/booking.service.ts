@@ -87,7 +87,6 @@ export class BookingService {
       where: { barber: { id: barberId } },
       relations: ['user', 'barber'],
     });
-    console.log('barberServices', barberServices);
 
     if (barberServices) {
       return barberServices;
