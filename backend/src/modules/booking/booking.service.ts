@@ -27,6 +27,24 @@ export class BookingService {
       throw new BadRequestException('Barber not found');
     }
 
+    const bookingTime = moment(createBookingDto.time, 'YYYY-MM-DDTHH:mm:ss');
+    const openingTime = moment(bookingTime).set({
+      hour: 8,
+      minute: 0,
+      second: 0,
+    });
+    const closingTime = moment(bookingTime).set({
+      hour: 17,
+      minute: 30,
+      second: 0,
+    });
+
+    if (bookingTime.isBefore(openingTime) || bookingTime.isAfter(closingTime)) {
+      throw new BadRequestException(
+        'Booking time must be between 08:00 and 17:30',
+      );
+    }
+
     const busyBarber = barberServices.some((service) => {
       const serviceDate = moment(service.time).format('DD-MM-YYYY');
       const createDate = moment(createBookingDto.time).format('DD-MM-YYYY');
