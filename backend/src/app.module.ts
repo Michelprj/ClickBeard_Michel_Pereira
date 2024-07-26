@@ -9,6 +9,7 @@ import { DatabaseModule } from './database/database.module';
 import { AppController } from './app.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './modules/user/entities/user.entity';
+import { BarberModule } from './modules/barber/barber.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { User } from './modules/user/entities/user.entity';
     ]),
     AuthModule,
     UserModule,
+    BarberModule,
   ],
   controllers: [AppController],
   providers: [
