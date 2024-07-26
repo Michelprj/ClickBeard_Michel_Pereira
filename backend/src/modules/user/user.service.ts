@@ -19,13 +19,11 @@ export class UserService {
   ) {}
 
   async create(createUserDto: CreateUserDto) {
-    if (!createUserDto) {
-      throw new BadRequestException('Missing required fields');
-    }
-
+    this.haveCredentials(createUserDto);
+    this.validatePassword(createUserDto.password);
     await this.checkEmailUnique(createUserDto.email);
-
     const saltOrRounds = 10;
+
     const hashedPassword = await bcrypt.hash(
       createUserDto.password,
       saltOrRounds,
@@ -46,15 +44,36 @@ export class UserService {
   }
 
   async findOne(id: number) {
-    return this.userRepository.findOne({ where: { id } });
+    await this.userFound(id);
+    return await this.userRepository.findOne({ where: { id } });
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} use. ${updateUserDto}`;
+    this.haveCredentials(updateUserDto);
+    const user = await this.userFound(id);
+    updateUserDto.password && this.validatePassword(updateUserDto.password);
+    const saltOrRounds = 10;
+
+    const userUpdate = {
+      ...updateUserDto,
+      password: updateUserDto.password
+        ? await bcrypt.hash(updateUserDto.password, saltOrRounds)
+        : user.password,
+    };
+    return await this.userRepository.update(id, userUpdate);
   }
 
-  async remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number, req: any) {
+    const user = await this.userFound(id);
+    const userLogged = await this.userRepository.findOne({
+      where: { id: req.userId },
+    });
+
+    if (user.id !== userLogged.id) {
+      throw new BadRequestException('You can only delete your own account');
+    }
+
+    return await this.userRepository.delete(id);
   }
 
   private async checkEmailUnique(email: string) {
@@ -75,5 +94,27 @@ export class UserService {
     }
 
     return user;
+  }
+
+  private async userFound(id: number) {
+    const user = await this.userRepository.findOne({ where: { id } });
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    return user;
+  }
+
+  private haveCredentials(credentialsDto: CreateUserDto | UpdateUserDto) {
+    if (!credentialsDto) {
+      throw new BadRequestException('Missing required fields');
+    }
+  }
+
+  private validatePassword(password: string) {
+    if (password.length < 8) {
+      throw new BadRequestException('Password must have at least 8 characters');
+    }
   }
 }
