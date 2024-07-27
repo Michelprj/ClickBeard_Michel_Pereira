@@ -8,8 +8,8 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/context/auth/auth";
 import { api } from "@/infrastructure/api/axios";
-import Loader from "@/components/loader";
-import Input from "@/components/login/input";
+import Loader from "@/components/elements/loader";
+import Input from "@/components/form/login/input";
 
 export default function Login() {
   const { signIn, loading } = useAuth();

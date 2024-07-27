@@ -5,8 +5,8 @@ import Image from "next/image";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
-import Loader from "@/components/loader";
-import Input from "@/components/login/input";
+import Loader from "@/components/elements/loader";
+import Input from "@/components/form/login/input";
 import { RegisterContext } from "@/context/register/register";
 import { RegisterFormData, registerSchema } from "@/schemas/register";
 
