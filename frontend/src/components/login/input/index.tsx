@@ -2,7 +2,7 @@ import { HTMLInputTypeAttribute } from 'react'
 import { FieldValues, Control, Controller, Path } from 'react-hook-form'
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io'
 
-interface LoginInputProps<T extends FieldValues> {
+interface InputProps<T extends FieldValues> {
   label: string
   id: Path<T>
   type: HTMLInputTypeAttribute
@@ -14,7 +14,7 @@ interface LoginInputProps<T extends FieldValues> {
   onClick?: () => void
 }
 
-const LoginInput = <T extends FieldValues>({
+const Input = <T extends FieldValues>({
   label,
   id,
   type,
@@ -24,7 +24,7 @@ const LoginInput = <T extends FieldValues>({
   isPassword = false,
   isText = true,
   onClick,
-}: LoginInputProps<T>) => (
+}: InputProps<T>) => (
   <div className="flex flex-col justify-center w-full">
     <label htmlFor={id} className="flex flex-col">
       <span className="text-[var(--white)] font-bold mb-1 text-sm">
@@ -65,4 +65,4 @@ const LoginInput = <T extends FieldValues>({
   </div>
 )
 
-export default LoginInput
+export default Input

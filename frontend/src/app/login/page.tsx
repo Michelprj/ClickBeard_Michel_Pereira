@@ -1,7 +1,6 @@
 'use client';
 
 import Header from "@/components/interface/header";
-import LoginInput from "@/components/login/input";
 import { LoginFormData, loginSchema } from "@/schemas/login";
 import Image from "next/image";
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -10,19 +9,12 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/context/auth/auth";
 import { api } from "@/infrastructure/api/axios";
 import Loader from "@/components/loader";
+import Input from "@/components/login/input";
 
-export default function Home() {
+export default function Login() {
   const { signIn, loading } = useAuth();
 
   const [showPassword, setShowPassword] = useState(false);
-
-  useEffect(() => {
-    const createAdmin = async () => {
-      await api.post('/');
-    }
-
-    createAdmin();
-  }, []);
 
   const {
     control,
@@ -52,7 +44,7 @@ export default function Home() {
         <h1 className="text-black text-center text-2xl font-semibold mb-6">Login</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <LoginInput
+          <Input
             label="E-mail"
             id="email"
             type="text"
@@ -60,7 +52,7 @@ export default function Home() {
             error={errors.email?.message}
             control={control}
           />
-          <LoginInput
+          <Input
             label="Senha"
             id="password"
             type="password"
