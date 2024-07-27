@@ -1,6 +1,19 @@
 version: '3.9'
 
 services:
+  frontend:
+    container_name: clickbeard_frontend
+    build: ./frontend
+    ports:
+      - 3000:3000
+    working_dir: /frontend
+    volumes:
+      - ./frontend/src:/frontend/src
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]
+      timeout: 10s
+      retries: 5
+  
   backend:
     container_name: clickbeard_backend
     build: ./backend
