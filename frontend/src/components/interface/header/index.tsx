@@ -3,7 +3,11 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function Header() {
+type HeaderProps = {
+  isHome?: boolean;
+}
+
+export default function Header({ isHome }: HeaderProps) {
   const {push} = useRouter();
   return (
     <div className="h-16 bg-black flex justify-between px-6 md:px-0 md:justify-around items-center text-white fixed top-0 w-full z-30">
@@ -12,11 +16,14 @@ export default function Header() {
       </div>
 
       <div className="flex gap-8 font-semibold items-center hidden md:flex">
-        <div className="flex gap-8">
-          <Link href="/" className="hover:text-[var(--primary-color)] hover:scale-105">Início</Link>
-          <Link href="/" className="hover:text-[var(--primary-color)] hover:scale-105">Valores</Link>
-          <Link href="/" className="hover:text-[var(--primary-color)] hover:scale-105">Contato</Link>
-        </div>
+        { isHome && (
+          <div className="flex gap-8">
+            <Link href="#home" className="hover:text-[var(--primary-color)] hover:scale-105">Início</Link>
+            <Link href="#values" className="hover:text-[var(--primary-color)] hover:scale-105">Valores</Link>
+            <Link href="#contact" className="hover:text-[var(--primary-color)] hover:scale-105">Contato</Link>
+          </div>
+          )
+        }
         
         <button onClick={() => push("/login")} className="py-1 px-6 border border-white rounded hover:bg-white hover:text-black">Entrar</button>
         <button onClick={() => push("/register")} className="py-1 px-6 bg-[var(--primary-color)] text-white hover:bg-[var(--secondary-color)] rounded">Criar conta</button>

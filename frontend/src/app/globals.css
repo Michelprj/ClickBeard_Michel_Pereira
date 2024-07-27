@@ -6,14 +6,16 @@
   --black: #000000;
   --primary-color: #CE7E07;
   --secondary-color: #B77108;
+  --card-color: #CC861E;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 body {
-  color: black;
+  color: white;
 }

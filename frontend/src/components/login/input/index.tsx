@@ -26,7 +26,7 @@ const Input = <T extends FieldValues>({
   onClick,
 }: InputProps<T>) => (
   <div className="flex flex-col justify-center w-full">
-    <label htmlFor={id} className="flex flex-col">
+    <label htmlFor={id} className="flex flex-col text-black">
       <span className="text-[var(--white)] font-bold mb-1 text-sm">
         {label}
       </span>
