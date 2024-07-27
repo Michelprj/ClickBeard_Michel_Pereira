@@ -7,6 +7,7 @@ import { api } from "@/infrastructure/api/axios";
 import { useRouter } from "next/navigation";
 import { valuesList } from "@/mocks/values.mock";
 import { barbers } from "@/mocks/barbers.mock";
+import Footer from "@/components/interface/footer";
 
 export default function Home() {
   const { push } = useRouter();
@@ -106,6 +107,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <Footer />
     </main>
   );
 }
