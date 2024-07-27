@@ -10,13 +10,13 @@ export const valuesList = [
     description: ['Barba simples', 'Barba desenhada', 'Barba completa'],
   },
   {
-    title: 'Sombancelha',
+    title: 'Sobrancelha',
     price: '20,00',
     description: [],
   },
   {
     title: 'Pacote completo',
-    price: '70,00',
-    description: ['Corte degrade', 'Barba simples', 'Bar', 'Barba desenhada'],
+    price: '80,00',
+    description: ['Corte de cabelo', 'Barba', 'Sobrancelha'],
   },
 ];
