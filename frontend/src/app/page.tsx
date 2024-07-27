@@ -35,7 +35,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="values" className="flex min-h-screen flex-col justify-around items-start bg-[var(--primary-color)]">
+      <section id="values" className="flex min-h-screen flex-col justify-around items-start bg-[var(--primary-color)] relative">
         <div className="flex flex-col justify-center px-6 md:px-20 lg:px-8 w-full space-y-16 py-20">
           <h1 className="text-2xl lg:text-3xl font-bold text-black text-center">Valores dos nossos serviços</h1>
 
@@ -63,7 +63,7 @@ export default function Home() {
               )
             )}
           </div>
-
+          <Image src="/razor-values.svg" alt="Image razor" width={300} height={300} className="absolute bottom-0 right-0 xl:right-80"/>
         </div>
       </section>
     </main>
