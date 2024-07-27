@@ -1,10 +1,14 @@
+'use client';
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
+  const {push} = useRouter();
   return (
     <div className="h-16 bg-black flex justify-between px-6 md:px-0 md:justify-around items-center text-white fixed top-0 w-full z-30">
       <div>
-        <h1 className="font-bold text-2xl">CLICKBEARD</h1>
+        <button onClick={() => push("/")} className="font-bold text-2xl">CLICKBEARD</button>
       </div>
 
       <div className="flex gap-8 font-semibold items-center hidden md:flex">
@@ -14,8 +18,8 @@ export default function Header() {
           <Link href="/" className="hover:text-[var(--primary-color)] hover:scale-105">Contato</Link>
         </div>
         
-        <button className="py-1 px-6 border border-white rounded hover:bg-white hover:text-black">Entrar</button>
-        <button className="py-1 px-6 bg-[var(--primary-color)] text-white hover:bg-[var(--secondary-color)] rounded">Criar conta</button>
+        <button onClick={() => push("/login")} className="py-1 px-6 border border-white rounded hover:bg-white hover:text-black">Entrar</button>
+        <button onClick={() => push("/register")} className="py-1 px-6 bg-[var(--primary-color)] text-white hover:bg-[var(--secondary-color)] rounded">Criar conta</button>
       </div>
 
       <div className="md:hidden">
