@@ -68,7 +68,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="flex min-h-screen flex-col justify-around items-start bg-[var(--secondary-color)]">
+      <section id="barbers" className="flex min-h-screen flex-col justify-around items-start bg-[var(--secondary-color)]">
         <div className="flex flex-col justify-center px-6 md:px-20 lg:px-8 w-full space-y-16 py-20">
           <div>
             <h1 className="text-2xl lg:text-3xl font-bold text-black text-center">Nossos Barbeiros</h1>
@@ -83,6 +83,26 @@ export default function Home() {
               </div>
               )
             )}
+          </div>
+        </div>
+      </section>
+
+      <section id="localization" className="flex min-h-screen flex-col justify-around items-start bg-[var(--primary-color)]">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-around text-black space-y-20 lg:space-y-0">
+          <div className="w-11/12 lg:w-6/12 space-y-20">
+            <div>
+              <h1 className="font-bold text-2xl lg:text-3xl">Nossa localização!</h1>
+              <p className="text-lg lg:text-xl font-semibold">Rua São Gabriel, 112, Bairro Jardim, Cidade Nova, Estado Metropolitano</p>
+            </div>
+
+            <div className="bg-[var(--secondary-color)] px-8 py-4 rounded">
+              <h1 className="text-xl lg:text-2xl font-bold space-y-2">Horário de funcionamento:</h1>
+              <p className="text-lg">Todos os dias de <b>08:00</b> ás <b>18:00</b></p>
+            </div>
+          </div>
+
+          <div>
+            <Image src="/map.png" alt="Image map" width={350} height={350} />
           </div>
         </div>
       </section>

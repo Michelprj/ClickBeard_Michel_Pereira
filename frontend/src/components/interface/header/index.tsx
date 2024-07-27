@@ -20,7 +20,7 @@ export default function Header({ isHome }: HeaderProps) {
           <div className="flex gap-8">
             <Link href="#home" className="hover:text-[var(--primary-color)] hover:scale-105">Início</Link>
             <Link href="#values" className="hover:text-[var(--primary-color)] hover:scale-105">Valores</Link>
-            <Link href="#contact" className="hover:text-[var(--primary-color)] hover:scale-105">Contato</Link>
+            <Link href="#localization" className="hover:text-[var(--primary-color)] hover:scale-105">Localização</Link>
           </div>
           )
         }
