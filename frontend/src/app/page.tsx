@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { api } from "@/infrastructure/api/axios";
 import { useRouter } from "next/navigation";
 import { valuesList } from "@/mocks/values.mock";
+import { barbers } from "@/mocks/barbers.mock";
 
 export default function Home() {
   const { push } = useRouter();
@@ -64,6 +65,25 @@ export default function Home() {
             )}
           </div>
           <Image src="/razor-values.svg" alt="Image razor" width={300} height={300} className="absolute bottom-0 right-0 xl:right-80"/>
+        </div>
+      </section>
+
+      <section id="contact" className="flex min-h-screen flex-col justify-around items-start bg-[var(--secondary-color)]">
+        <div className="flex flex-col justify-center px-6 md:px-20 lg:px-8 w-full space-y-16 py-20">
+          <div>
+            <h1 className="text-2xl lg:text-3xl font-bold text-black text-center">Nossos Barbeiros</h1>
+            <p className="text-xl font-semibold text-center text-black">Conheça os nossos barbeiros, mestres em transformar seu estilo com precisão e criatividade!</p>
+          </div>
+
+          <div className="w-full flex flex-wrap justify-center gap-12 py-8">
+            { barbers.map(({ name, profile }, index) => (
+              <div key={index} className="bg-[var(--card-color)] h-[300px] py-8 w-60 text-black flex flex-col items-center justify-between rounded-lg shadow-lg">
+                <Image src={profile} alt="Image barber" width={120} height={120} />
+                <h1 className="text-xl font-semibold">{name}</h1>
+              </div>
+              )
+            )}
+          </div>
         </div>
       </section>
     </main>
