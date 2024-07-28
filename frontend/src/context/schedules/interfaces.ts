@@ -8,6 +8,7 @@ export interface ISchedules {
   specialty_type: string[];
   user: IUser;
   barber: IBarber;
+  is_confirmed?: boolean;
 }
 
 export interface ISchedulesProviderProps {

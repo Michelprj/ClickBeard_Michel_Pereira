@@ -5,6 +5,7 @@ interface ISchedulesHTTPService {
   create: (barberId: string, time: Date, specialty_type: string[]) => Promise<AxiosPromise<any>>;
   findAll: () => Promise<AxiosPromise<any>>;
   update: (paramId: string, time: Date, specialty_type: string[]) => Promise<AxiosPromise<any>>;
+  cancelSchedule: (paramId: string) => Promise<AxiosPromise<any>>;
 }
 
 const SchedulesHTTPService: ISchedulesHTTPService = {
@@ -31,6 +32,9 @@ const SchedulesHTTPService: ISchedulesHTTPService = {
       specialty_type,
     });
   },
+  cancelSchedule: function (paramId: string): Promise<AxiosPromise<any>> {
+    return api.patch(`booking/${paramId}/confirm`);
+  }
 };
 
 export default SchedulesHTTPService;

@@ -26,6 +26,7 @@ type SchedulesContextData = {
   setLoading: Dispatch<SetStateAction<boolean>>;
   findAll(): Promise<void>;
   update(credentials: UpdateCredentials): Promise<void>;
+  cancelSchedule(paramId: string): Promise<void>;
 };
 
 export const SchedulesContext = createContext({} as SchedulesContextData);
@@ -140,7 +141,43 @@ function SchedulesProvider({ children }: ISchedulesProviderProps) {
     } finally {
       setLoading(false);
     }
-}
+  }
+
+  const cancelSchedule = async (paramId: string) => {
+    setLoading(true);
+    try {
+      await SchedulesHTTPService.cancelSchedule(paramId);
+
+      MySwal.fire({
+        title: 'Agendamento cancelado com sucesso!',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 4000,
+        showCloseButton: true,
+        color: 'white',
+        background: 'green',
+      });
+      
+      push('/mySchedule');
+    } catch (error: any) {
+      console.log(error.response.data.message);
+      MySwal.fire({
+        title: error.response.data.message === "Booking not found" 
+        ? 'Agendamento não encontrado!'
+        : 'Cancelamentos só são permitidos com pelo menos duas horas de antecedência.',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 9000,
+        showCloseButton: true,
+        color: 'white',
+        background: '#b13838',
+      });
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <SchedulesContext.Provider
@@ -152,6 +189,7 @@ function SchedulesProvider({ children }: ISchedulesProviderProps) {
         setLoading,
         findAll,
         update,
+        cancelSchedule,
       }}
     >
       {children}
