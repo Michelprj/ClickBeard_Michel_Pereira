@@ -19,3 +19,9 @@ export interface CreateCredentials {
   time: Date;
   specialty_type: string[];
 }
+
+export interface UpdateCredentials {
+  paramId: string;
+  time: Date;
+  specialty_type: string[];
+}

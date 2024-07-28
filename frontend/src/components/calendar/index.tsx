@@ -14,7 +14,7 @@ import { SchedulesContext } from "@/context/schedules/schedules";
 import { ISchedules } from "@/context/schedules/interfaces";
 
 export default function ComponentsAppsCalendar() {
-  const { create, findAll: findAllSchedules } = useContext(SchedulesContext);
+  const { create, findAll: findAllSchedules, update } = useContext(SchedulesContext);
   
   const now = new Date();
   const MySwal = withReactContent(Swal);
@@ -121,6 +121,17 @@ export default function ComponentsAppsCalendar() {
       time: adjustedDate,
       specialty_type: ['hair'],
     });
+    
+    setBookingCreated(true);
+    setIsAddEventModal(false);  
+  };
+
+  const updateEvent = async () => {
+    setBookingCreated(false);
+    const localDate = new Date(params.start);
+    const adjustedDate = new Date(localDate.getTime() - localDate.getTimezoneOffset() * 60000);
+    
+    await update({ paramId: params.id, time: adjustedDate,  specialty_type: ['beard'] });
     
     setBookingCreated(true);
     setIsAddEventModal(false);  
@@ -272,7 +283,7 @@ export default function ComponentsAppsCalendar() {
                         </button>
                         <button
                           type="button"
-                          onClick={() => saveEvent()}
+                          onClick={params.id ? () => updateEvent() : () => saveEvent()}
                           className="bg-[var(--primary-color)] text-white px-4 py-2 rounded font-semibold hover:text-black"
                         >
                           {params.id ? "Atualizar agendamento" : "Criar agendamento"}

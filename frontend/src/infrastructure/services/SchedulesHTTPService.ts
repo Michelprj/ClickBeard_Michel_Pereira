@@ -4,6 +4,7 @@ import { api } from '../api/axios';
 interface ISchedulesHTTPService {
   create: (barberId: string, time: Date, specialty_type: string[]) => Promise<AxiosPromise<any>>;
   findAll: () => Promise<AxiosPromise<any>>;
+  update: (paramId: string, time: Date, specialty_type: string[]) => Promise<AxiosPromise<any>>;
 }
 
 const SchedulesHTTPService: ISchedulesHTTPService = {
@@ -19,7 +20,17 @@ const SchedulesHTTPService: ISchedulesHTTPService = {
   },
   findAll: function (): Promise<AxiosPromise<any>> {
     return api.get('booking');
-  }
+  },
+  update: function (
+    paramId: string,
+    time: Date,
+    specialty_type: string[]
+  ): Promise<AxiosPromise<any>> {
+    return api.patch(`booking/${paramId}`, {
+      time,
+      specialty_type,
+    });
+  },
 };
 
 export default SchedulesHTTPService;
