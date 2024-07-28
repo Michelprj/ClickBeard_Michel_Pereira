@@ -1,7 +1,7 @@
 "use client";
 
 import { Transition, Dialog } from "@headlessui/react";
-import { Fragment, use, useContext, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import Swal from 'sweetalert2';
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -12,6 +12,8 @@ import { MdClose } from "react-icons/md";
 import withReactContent from "sweetalert2-react-content";
 import { SchedulesContext } from "@/context/schedules/schedules";
 import { ISchedules } from "@/context/schedules/interfaces";
+import CustomSelect from "../form/select/selectBox";
+import Select from "../form/select/select";
 
 export default function ComponentsAppsCalendar() {
   const { create, findAll: findAllSchedules, update } = useContext(SchedulesContext);
@@ -32,15 +34,13 @@ export default function ComponentsAppsCalendar() {
   useEffect(() => {
     const findAll = async () => {
       const response: any = await findAllSchedules();
+
       const eventsAll = response.map((schedule: ISchedules) => {
-        console.log('schedule', schedule.time);
-        
         const startDate = new Date(schedule.time);
         startDate.setHours(startDate.getHours() + 3);
-        console.log('startDate', startDate);
-        
         const endDate = new Date(startDate);
         endDate.setMinutes(startDate.getMinutes() + 30);
+
         return {
           id: schedule.id,
           title: schedule.user.name,
@@ -165,6 +165,22 @@ export default function ComponentsAppsCalendar() {
     }
   };
 
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+
+  const serviceOptions = [
+    { value: "hair", label: "Corte de cabelo" },
+    { value: "beard", label: "Barba" },
+    { value: "eyebrow", label: "Sobrancelha" },
+  ];
+
+  const [selectedBarber, setSelectedBarber] = useState<string>("");
+
+  const barberOptions = [
+    { value: "1", label: "Barbeiro 1" },
+    { value: "2", label: "Barbeiro 2" },
+    { value: "3", label: "Barbeiro 3" },
+  ];
+  
   return (
     <div className="px-20 py-24">
       <div className="panel mb-5">
@@ -259,7 +275,7 @@ export default function ComponentsAppsCalendar() {
                           id="start"
                           type="datetime-local"
                           name="start"
-                          className="bg-[#222] py-2 px-3 rounded text-white"
+                          className="bg-[#222] py-4 px-3 rounded text-white"
                           placeholder="Escolha uma data"
                           value={params.start || ""}
                           min={minStartDate}
@@ -272,6 +288,18 @@ export default function ComponentsAppsCalendar() {
                           id="startDateErr"
                         ></div>
                       </div>
+
+                      <CustomSelect 
+                        options={serviceOptions}
+                        selectedOptions={selectedServices}
+                        setSelectedOptions={setSelectedServices}
+                      />
+
+                      <Select 
+                        options={barberOptions}
+                        selectedOption={selectedBarber}
+                        setSelectedOption={setSelectedBarber}
+                      /> 
 
                       <div className="!mt-8 flex items-center justify-end space-x-4">
                         <button
