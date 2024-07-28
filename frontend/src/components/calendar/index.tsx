@@ -2,16 +2,18 @@
 
 import { Transition, Dialog } from "@headlessui/react";
 import { Fragment, useState } from "react";
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { FaPlus } from "react-icons/fa6";
 import { MdClose } from "react-icons/md";
+import withReactContent from "sweetalert2-react-content";
 
 export default function ComponentsAppsCalendar() {
   const now = new Date();
+  const MySwal = withReactContent(Swal);
 
   const getMonth = (dt: Date, add: number = 0) => {
     let month = dt.getMonth() + 1 + add;
@@ -186,59 +188,11 @@ export default function ComponentsAppsCalendar() {
   };
 
   const saveEvent = () => {
-    if (!params.title) {
-      return true;
-    }
-    if (!params.start) {
-      return true;
-    }
-    if (!params.end) {
-      return true;
-    }
-    if (params.id) {
-      //update event
-      let dataevent = events || [];
-      let event: any = dataevent.find((d: any) => d.id === parseInt(params.id));
-      event.title = params.title;
-      event.start = params.start;
-      event.end = params.end;
-      event.description = params.description;
-      event.className = params.type;
-
-      setEvents([]);
-      setTimeout(() => {
-        setEvents(dataevent);
-      });
-    } else {
-      //add event
-      let maxEventId = 0;
-      if (events) {
-        maxEventId = events.reduce(
-          (max: number, character: any) =>
-            character.id > max ? character.id : max,
-          events[0].id
-        );
-      }
-      maxEventId = maxEventId + 1;
-      let event = {
-        id: maxEventId,
-        title: params.title,
-        start: params.start,
-        end: params.end,
-        description: params.description,
-        className: params.type,
-      };
-      let dataevent = events || [];
-      dataevent = dataevent.concat([event]);
-      setTimeout(() => {
-        setEvents(dataevent);
-      });
-    }
-    showMessage("Event has been saved successfully.");
+    showMessage();
     setIsAddEventModal(false);
   };
 
-  const startDateChange = (event: any) => {
+  const dateChange = (event: any) => {
     const dateStr = event.target.value;
     if (dateStr) {
       setMinEndDate(dateFormat(dateStr));
@@ -246,23 +200,16 @@ export default function ComponentsAppsCalendar() {
     }
   };
 
-  const changeValue = (e: any) => {
-    const { value, id } = e.target;
-    setParams({ ...params, [id]: value });
-  };
-
-  const showMessage = (msg = "", type = "success") => {
-    const toast: any = Swal.mixin({
+  const showMessage = () => {
+    MySwal.fire({
+      title: 'Agendamento realizado com sucesso!',
       toast: true,
-      position: "top",
+      position: 'top-end',
       showConfirmButton: false,
-      timer: 3000,
-      customClass: { container: "toast" },
-    });
-    toast.fire({
-      icon: type,
-      title: msg,
-      padding: "10px 20px",
+      timer: 4000,
+      showCloseButton: true,
+      color: 'white',
+      background: 'green',
     });
   };
 
@@ -310,6 +257,8 @@ export default function ComponentsAppsCalendar() {
             eventClick={(event: any) => editEvent(event)}
             select={(event: any) => editDate(event)}
             events={events}
+            timeZone="America/Sao_Paulo"
+            locale={"pt-br"}
           />
         </div>
       </div>
@@ -369,7 +318,7 @@ export default function ComponentsAppsCalendar() {
                           placeholder="Escolha uma data"
                           value={params.start || ""}
                           min={minStartDate}
-                          onChange={(event: any) => startDateChange(event)}
+                          onChange={(event: any) => dateChange(event)}
                           required
                         />
                         <div
