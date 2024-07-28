@@ -37,8 +37,9 @@ export default function ComponentsAppsCalendar() {
   useEffect(() => {
     const findAll = async () => {
       const response: any = await findAllSchedules();
+      const filteredSchedules = response.filter((schedule: ISchedules) => schedule.is_confirmed === true);
 
-      const eventsAll = response.map((schedule: ISchedules) => {
+      const eventsAll = filteredSchedules.map((schedule: ISchedules) => {
         const startDate = new Date(schedule.time);
         startDate.setHours(startDate.getHours() + 3);
         const endDate = new Date(startDate);
