@@ -99,10 +99,9 @@ function AuthProvider({ children }: IAuthProviderProps) {
         path: '/',
       });
       localStorage.setItem('user', JSON.stringify({ user }));
-      console.log('User:', user);
       
       setUser(user);
-      push(user.isAdmin ? `/scheduling` : `/toSchedule`);
+      push(user.isAdmin ? `/toSchedule` : `/mySchedule`);
       
       MySwal.fire({
         title: 'Login realizado com sucesso!',

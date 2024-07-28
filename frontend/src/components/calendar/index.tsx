@@ -14,9 +14,12 @@ import { SchedulesContext } from "@/context/schedules/schedules";
 import { ISchedules } from "@/context/schedules/interfaces";
 import CustomSelect from "../form/select/selectBox";
 import Select from "../form/select/select";
+import { BarberContext } from "@/context/barber/barber";
+import { IBarber } from "@/context/barber/interfaces";
 
 export default function ComponentsAppsCalendar() {
-  const { create, findAll: findAllSchedules, update } = useContext(SchedulesContext);
+  const { create: createSchedule, findAll: findAllSchedules, update } = useContext(SchedulesContext);
+  const { create: createBarber, findAll: findAllBarbers } = useContext(BarberContext);
   
   const now = new Date();
   const MySwal = withReactContent(Swal);
@@ -68,6 +71,44 @@ export default function ComponentsAppsCalendar() {
   };
   const [params, setParams] = useState<any>(defaultParams);
 
+  const [selectedServices, setSelectedServices] = useState<string[]>([]);
+  const serviceOptions = [
+    { value: "hair", label: "Corte de cabelo" },
+    { value: "beard", label: "Barba" },
+    { value: "eyebrow", label: "Sobrancelha" },
+  ];
+
+  const [selectedBarber, setSelectedBarber] = useState<string>("");
+  const [barberOptions, setBarberOptions] = useState<any>([]);
+
+  const filterBarber = async () => {
+    const response: any = await findAllBarbers();
+  
+    const barbersWithServices = response.filter((barber: IBarber) => {
+      return selectedServices.every((service) => {
+        return barber.specialty.includes(service);
+      });
+    });
+  
+    if (barbersWithServices.length > 0) {
+      setSelectedBarber(String(barbersWithServices[0].id));
+    } else {
+      setSelectedBarber("");
+    }
+  
+    const barbers = barbersWithServices.map((barber: IBarber) => {
+      return {
+        value: barber.id,
+        label: barber.name,
+      };
+    });
+    setBarberOptions(barbers);
+  };
+
+  useEffect(() => {
+    filterBarber();    
+  }, [selectedServices]);
+
   const dateFormat = (dt: any) => {
     dt = new Date(dt);
     const month =
@@ -115,15 +156,30 @@ export default function ComponentsAppsCalendar() {
     setBookingCreated(false);
     const localDate = new Date(params.start);
     const adjustedDate = new Date(localDate.getTime() - localDate.getTimezoneOffset() * 60000);
-    
-    await create({
-      barberId: '1',
-      time: adjustedDate,
-      specialty_type: ['hair'],
-    });
-    
-    setBookingCreated(true);
-    setIsAddEventModal(false);  
+
+    if (!selectedBarber || selectedBarber === "" || selectedServices.length === 0) {
+      MySwal.fire({
+        title: 'Selecione um barbeiro e um serviço',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 8000,
+        showCloseButton: true,
+        color: 'white',
+        background: '#b49100',
+      });
+    } else {
+      await createSchedule({
+        barberId: selectedBarber,
+        time: adjustedDate,
+        specialty_type: selectedServices,
+      });
+      
+      setBookingCreated(true);
+      setIsAddEventModal(false);
+      setSelectedBarber("");
+      setSelectedServices([]);
+    }
   };
 
   const updateEvent = async () => {
@@ -164,22 +220,6 @@ export default function ComponentsAppsCalendar() {
       setParams({ ...params, start: adjustedDate, end: "" });
     }
   };
-
-  const [selectedServices, setSelectedServices] = useState<string[]>([]);
-
-  const serviceOptions = [
-    { value: "hair", label: "Corte de cabelo" },
-    { value: "beard", label: "Barba" },
-    { value: "eyebrow", label: "Sobrancelha" },
-  ];
-
-  const [selectedBarber, setSelectedBarber] = useState<string>("");
-
-  const barberOptions = [
-    { value: "1", label: "Barbeiro 1" },
-    { value: "2", label: "Barbeiro 2" },
-    { value: "3", label: "Barbeiro 3" },
-  ];
   
   return (
     <div className="px-20 py-24">

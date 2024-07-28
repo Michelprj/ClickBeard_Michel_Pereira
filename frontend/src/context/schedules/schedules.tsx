@@ -41,8 +41,6 @@ function SchedulesProvider({ children }: ISchedulesProviderProps) {
     try {
       const response = await SchedulesHTTPService.create(barberId, time, specialty_type);
       const schedule = response.data;
-
-      console.log('schedule', schedule);
       
       setSchedule(schedule);
 

@@ -13,6 +13,7 @@ type HeaderProps = {
 export default function Header({ isHome }: HeaderProps) {
   const {push} = useRouter();
   const { authInfo, signOut } = useAuth();
+  const pathname = usePathname();
 
   const handleLogout = async () => {
     await signOut();
@@ -35,10 +36,18 @@ export default function Header({ isHome }: HeaderProps) {
         }
         { authInfo.accessToken ? (
           <div className="flex items-center gap-6">
+            { pathname === '/' && authInfo.user.isAdmin && 
+              <button onClick={() => push("/toSchedule")} className="py-1 px-6 border border-[var(--primary-color)] text-white hover:bg-white hover:text-black rounded">Agendandos hoje</button>
+            }
             { authInfo.user.isAdmin && 
               <button onClick={() => push("/")} className="py-1 px-6 rounded bg-[var(--primary-color)] hover:bg-white hover:text-black">Cadastrar barbeiros</button>
             }
-            <button onClick={() => push("/")} className="py-1 px-6 border border-[var(--primary-color)] text-white hover:bg-white hover:text-black rounded">Meus agendamentos</button>
+            { (pathname === '/mySchedule' || pathname === '/') && !authInfo.user.isAdmin && 
+              <button onClick={() => push("/toSchedule")} className="py-1 px-6 rounded bg-[var(--primary-color)] hover:bg-white hover:text-black">Novo agendamento</button>
+            }
+            { (!authInfo.user.isAdmin && pathname !== '/mySchedule') && 
+              <button onClick={() => push("/mySchedule")} className="py-1 px-6 border border-[var(--primary-color)] text-white hover:bg-white hover:text-black rounded">Meus agendamentos</button>
+            }
             <div className="space-x-4 flex items-center">
               <button onClick={() => push("/")}>
                 <MdPerson size={25} />

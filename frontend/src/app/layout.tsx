@@ -5,6 +5,7 @@ import "../components/calendar/styles.css";
 import { AuthProvider } from "@/context/auth/auth";
 import RegisterProvider from "@/context/register/register";
 import SchedulesProvider from "@/context/schedules/schedules";
+import BarberProvider from "@/context/barber/barber";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,9 +23,11 @@ export default function RootLayout({
     <AuthProvider>
       <RegisterProvider>
         <SchedulesProvider>
-          <html lang="pt-BR">
-            <body className={inter.className}>{children}</body>
-          </html>
+          <BarberProvider>
+            <html lang="pt-BR">
+              <body className={inter.className}>{children}</body>
+            </html>
+          </BarberProvider>
         </SchedulesProvider>
       </RegisterProvider>
     </AuthProvider>

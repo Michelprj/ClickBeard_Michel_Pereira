@@ -11,3 +11,9 @@ export interface IBarber {
 export interface IBarberProviderProps {
   children: ReactNode;
 }
+
+export interface CreateCredentials {
+  name: string;
+  age: number;
+  specialty: string[];
+}
