@@ -102,7 +102,7 @@ export class BookingService {
 
   async findAllByBarber(barberId: number) {
     const barberServices = await this.bookingRepository.find({
-      where: { barber: { id: barberId } },
+      where: { barber: { id: barberId }, is_confirmed: true },
       relations: ['user', 'barber'],
     });
 
