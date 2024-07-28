@@ -1,7 +1,10 @@
 'use client';
 
+import { useAuth } from "@/context/auth/auth";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { MdPerson } from "react-icons/md";
+import { RxExit } from "react-icons/rx";
 
 type HeaderProps = {
   isHome?: boolean;
@@ -9,6 +12,12 @@ type HeaderProps = {
 
 export default function Header({ isHome }: HeaderProps) {
   const {push} = useRouter();
+  const { authInfo, signOut } = useAuth();
+
+  const handleLogout = async () => {
+    await signOut();
+  }
+
   return (
     <div className="h-16 bg-black flex justify-between px-6 md:px-0 md:justify-around items-center text-white fixed top-0 w-full z-30">
       <div>
@@ -24,9 +33,29 @@ export default function Header({ isHome }: HeaderProps) {
           </div>
           )
         }
-        
-        <button onClick={() => push("/login")} className="py-1 px-6 border border-white rounded hover:bg-white hover:text-black">Entrar</button>
-        <button onClick={() => push("/register")} className="py-1 px-6 bg-[var(--primary-color)] text-white hover:bg-[var(--secondary-color)] rounded">Criar conta</button>
+        { authInfo.accessToken ? (
+          <div className="flex items-center gap-6">
+            { authInfo.user.isAdmin && 
+              <button onClick={() => push("/")} className="py-1 px-6 rounded bg-[var(--primary-color)] hover:bg-white hover:text-black">Cadastrar barbeiros</button>
+            }
+            <button onClick={() => push("/")} className="py-1 px-6 border border-[var(--primary-color)] text-white hover:bg-white hover:text-black rounded">Meus agendamentos</button>
+            <div className="space-x-4 flex items-center">
+              <button onClick={() => push("/")}>
+                <MdPerson size={25} />
+              </button>
+              <button onClick={() => handleLogout()}>
+                <RxExit size={25} />
+              </button>
+            </div>
+
+          </div>
+        ) : (
+          <div className="space-x-8">
+            <button onClick={() => push("/login")} className="py-1 px-6 border border-white rounded hover:bg-white hover:text-black">Entrar</button>
+            <button onClick={() => push("/register")} className="py-1 px-6 bg-[var(--primary-color)] text-white hover:bg-[var(--secondary-color)] rounded">Criar conta</button>
+          </div>
+        )
+        }
       </div>
 
       <div className="md:hidden">
