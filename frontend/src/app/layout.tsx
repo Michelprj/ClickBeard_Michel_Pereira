@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "../components/calendar/styles.css";
 import { AuthProvider } from "@/context/auth/auth";
 import RegisterProvider from "@/context/register/register";
 
