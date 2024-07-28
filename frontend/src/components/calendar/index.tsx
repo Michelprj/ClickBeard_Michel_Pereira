@@ -13,7 +13,7 @@ import withReactContent from "sweetalert2-react-content";
 
 export default function ComponentsAppsCalendar() {
   const now = new Date();
-  const MySwal = withReactContent(Swal);
+  const MySwal = withReactContent(Swal);  
 
   const getMonth = (dt: Date, add: number = 0) => {
     let month = dt.getMonth() + 1 + add;
@@ -192,11 +192,21 @@ export default function ComponentsAppsCalendar() {
     setIsAddEventModal(false);
   };
 
+  const adjustMinutes = (dateStr: string) => {
+    const date = new Date(dateStr);
+    const minutes = date.getMinutes();
+    if (minutes !== 0 && minutes !== 30) {
+      date.setMinutes(minutes < 30 ? 0 : 30);
+    }
+    return dateFormat(date);
+  };
+
   const dateChange = (event: any) => {
     const dateStr = event.target.value;
     if (dateStr) {
-      setMinEndDate(dateFormat(dateStr));
-      setParams({ ...params, start: dateStr, end: "" });
+      const adjustedDate = adjustMinutes(dateStr);
+      setMinEndDate(adjustedDate);
+      setParams({ ...params, start: adjustedDate, end: "" });
     }
   };
 
@@ -214,18 +224,13 @@ export default function ComponentsAppsCalendar() {
   };
 
   return (
-    <div>
+    <div className="px-20 py-24">
       <div className="panel mb-5">
         <div className="mb-4 flex flex-col items-center justify-center sm:flex-row sm:justify-between">
-          <div className="mb-4 sm:mb-0">
-            <div className="text-center text-lg font-semibold sm:text-left sm:text-right">
-              Calendário
-            </div>
-            <div className="mt-2">
-              <div className="flex items-center mr-4">
-                <div className="h-2.5 w-2.5 rounded-sm bg-[var(--primary-color)] mr-2"></div>
-                <div>Agendamentos</div>
-              </div>
+          <div className="mt-2">
+            <div className="flex items-center mr-4">
+              <div className="h-2.5 w-2.5 rounded-sm bg-[var(--primary-color)] mr-2"></div>
+              <div>Agendamentos</div>
             </div>
           </div>
           <button
@@ -263,7 +268,6 @@ export default function ComponentsAppsCalendar() {
         </div>
       </div>
 
-      {/* add event modal */}
       <Transition appear show={isAddEventModal} as={Fragment}>
         <Dialog
           as="div"
@@ -320,6 +324,7 @@ export default function ComponentsAppsCalendar() {
                           min={minStartDate}
                           onChange={(event: any) => dateChange(event)}
                           required
+                          step={1800}
                         />
                         <div
                           className="mt-2 text-danger"
