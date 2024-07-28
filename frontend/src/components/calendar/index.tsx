@@ -80,10 +80,10 @@ export default function ComponentsAppsCalendar() {
   };
 
   const editEvent = (data: any = null) => {
-    let params = JSON.parse(JSON.stringify(defaultParams));
+    const params = JSON.parse(JSON.stringify(defaultParams));
     setParams(params);
     if (data) {
-      let obj = JSON.parse(JSON.stringify(data.event));
+      const obj = JSON.parse(JSON.stringify(data.event));
       setParams({
         id: obj.id ? obj.id : null,
         title: obj.title ? obj.title : null,
@@ -102,7 +102,7 @@ export default function ComponentsAppsCalendar() {
   };
 
   const editDate = (data: any) => {
-    let obj = {
+    const obj = {
       event: {
         start: data.start,
         end: data.end,
