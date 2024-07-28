@@ -131,6 +131,16 @@ export default function ComponentsAppsCalendar() {
     const minutes = date.getMinutes();
     if (minutes !== 0 && minutes !== 30) {
       date.setMinutes(minutes < 30 ? 0 : 30);
+      MySwal.fire({
+        title: 'Os agendamentos são feitos em intervalos de 30 minutos',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 8000,
+        showCloseButton: true,
+        color: 'white',
+        background: '#b49100',
+      });
     }
     return dateFormat(date);
   };
@@ -238,7 +248,7 @@ export default function ComponentsAppsCalendar() {
                           id="start"
                           type="datetime-local"
                           name="start"
-                          className="form-input bg-[#222] py-2 px-3 rounded-md text-white"
+                          className="bg-[#222] py-2 px-3 rounded text-white"
                           placeholder="Escolha uma data"
                           value={params.start || ""}
                           min={minStartDate}
