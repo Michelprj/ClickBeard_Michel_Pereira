@@ -114,11 +114,7 @@ export class BookingService {
   async cancelBooking(id: number) {
     const booking = await this.findOne(id);
 
-    if (!booking) {
-      throw new BadRequestException('Booking not found');
-    }
-
-    const bookingTime = momentTimezone(booking.time);
+    const bookingTime = momentTimezone.tz(booking.time, 'America/Sao_Paulo');
     const currentTime = momentTimezone.tz('America/Sao_Paulo');
 
     const hoursDifference = bookingTime.diff(currentTime, 'hours') + 3;
