@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-
+import React from "react";
 interface Option {
   value: string;
   label: string;
 }
-
 interface SelectProps {
   options: Option[];
   selectedOption: string;
@@ -18,11 +16,6 @@ export default function Select({
 }: SelectProps) {
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
-  };
-
-  const getLabel = (value: string) => {
-    const option = options.find((opt) => opt.value === value);
-    return option ? option.label : value;
   };
 
   return (
@@ -47,6 +40,9 @@ export default function Select({
           </option>
         ))}
       </select>
+      <div className="text-white text-sm text-red-600 font-bold bottom-20 z-50">
+        { options.length === 0 && "Nenhum barbeiro encontrado" }
+      </div>
     </div>
   );
 }
