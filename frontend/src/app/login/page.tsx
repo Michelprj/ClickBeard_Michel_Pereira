@@ -12,7 +12,7 @@ import Loader from "@/components/elements/loader";
 import Input from "@/components/form/login/input";
 
 export default function Login() {
-  const { signIn, loading } = useAuth();
+  const { signIn, loading, authInfo } = useAuth();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -42,35 +42,43 @@ export default function Login() {
 
       <div className="relative z-20 bg-[var(--primary-color)] w-11/12 sm:w-9/12 md:w-7/12 lg:w-6/12 xl:w-4/12 p-6 rounded">
         <h1 className="text-black text-center text-2xl font-semibold mb-6">Login</h1>
+        {
+          authInfo.accessToken ? (
+            <div>
+              <p className="text-white text-center text-2xl font-semibold my-20">Login realizado com sucesso!</p>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <Input
-            label="E-mail"
-            id="email"
-            type="text"
-            placeholder="Digite seu e-mail"
-            error={errors.email?.message}
-            control={control}
-          />
-          <Input
-            label="Senha"
-            id="password"
-            type="password"
-            placeholder="Digite sua senha"
-            error={errors.password?.message}
-            control={control}
-            isPassword
-            isText={showPassword}
-            onClick={toggleShowPassword}
-          />
-          <button 
-            type="submit" 
-            className={`${!isValid ? 'bg-[#373737] text-black hover:cursor-not-allowed' : 'bg-black text-white' } w-full py-2 rounded font-semibold`}
-            disabled={!isValid}
-          >
-            {loading ? <Loader /> : 'Entrar'}
-          </button>
-        </form>
+            </div>
+          ) : (
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <Input
+              label="E-mail"
+              id="email"
+              type="text"
+              placeholder="Digite seu e-mail"
+              error={errors.email?.message}
+              control={control}
+            />
+            <Input
+              label="Senha"
+              id="password"
+              type="password"
+              placeholder="Digite sua senha"
+              error={errors.password?.message}
+              control={control}
+              isPassword
+              isText={showPassword}
+              onClick={toggleShowPassword}
+            />
+            <button 
+              type="submit" 
+              className={`${!isValid ? 'bg-[#373737] text-black hover:cursor-not-allowed' : 'bg-black text-white' } w-full py-2 rounded font-semibold`}
+              disabled={!isValid}
+            >
+              {loading ? <Loader /> : 'Entrar'}
+            </button>
+          </form>
+          )
+        }
       </div>
     </main>
   );
