@@ -45,12 +45,11 @@ export default function MySchedule() {
     };
 
     findAllSchedules();
-  }, []);
+  }, [isModalOpen]);
 
   const cancelScheduleById = async (id: string) => {
     await cancelSchedule(id);
 
-    setSchedules(schedules.filter((schedule: any) => String(schedule.id) !== id));
     setIsModalOpen(false);
   }
 
