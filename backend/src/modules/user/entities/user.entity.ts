@@ -16,7 +16,7 @@ export class Users {
   password: string;
 
   @Column({ name: 'is_admin', default: false })
-  isadmin: boolean;
+  isAdmin: boolean;
 
   @OneToMany(() => Booking, (booking) => booking.users)
   bookings: Booking[];

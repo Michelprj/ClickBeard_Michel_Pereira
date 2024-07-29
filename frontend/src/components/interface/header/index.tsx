@@ -36,7 +36,7 @@ export default function Header({ isHome }: HeaderProps) {
     setMenuOpen(false);
   }
 
-  const isAdmin = authInfo?.user?.isadmin;
+  const isAdmin = authInfo?.user?.isAdmin;
   const isLoggedIn = !!authInfo.accessToken;
 
   const renderAuthButtons = () => (

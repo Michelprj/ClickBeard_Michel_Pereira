@@ -14,7 +14,7 @@ export default class UserSeeder implements Seeder {
       name: 'Admin User',
       email: 'admin@example.com',
       password: await bcrypt.hash('adminpassword', 10),
-      isadmin: true,
+      isAdmin: true,
     });
 
     await repository.save(userCreated);

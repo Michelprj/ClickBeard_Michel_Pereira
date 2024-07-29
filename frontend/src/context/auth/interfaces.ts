@@ -5,7 +5,7 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
-  isadmin: boolean;
+  isAdmin: boolean;
 }
 
 export interface IAuthProviderProps {

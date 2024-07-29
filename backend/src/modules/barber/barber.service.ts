@@ -54,7 +54,7 @@ export class BarberService {
   private async isAdminLogged(req: any, method: string) {
     const userLogged = await this.userService.findOne(req.userId);
 
-    if (!userLogged.isadmin) {
+    if (!userLogged.isAdmin) {
       throw new UnauthorizedException(
         `Only the administrator can ${method} new barbers`,
       );
