@@ -19,7 +19,7 @@ import { IBarber } from "@/context/barber/interfaces";
 
 export default function ComponentsAppsCalendar() {
   const { create: createSchedule, findAll: findAllSchedules, update } = useContext(SchedulesContext);
-  const { create: createBarber, findAll: findAllBarbers } = useContext(BarberContext);
+  const { findAll: findAllBarbers } = useContext(BarberContext);
   
   const now = new Date();
   const MySwal = withReactContent(Swal);
@@ -52,6 +52,7 @@ export default function ComponentsAppsCalendar() {
           end: endDate,
           classNames: "",
           description: "",
+          userId: schedule.user.id, 
         };
       });
       setEvents(eventsAll);
@@ -62,12 +63,13 @@ export default function ComponentsAppsCalendar() {
 
   const [minStartDate, setMinStartDate] = useState<any>("");
   const defaultParams = {
-    id: null,
+    id: '',
     title: "",
     start: "",
     end: "",
     description: "",
     type: "primary",
+    userId: 0,
   };
   const [params, setParams] = useState<any>(defaultParams);
 
@@ -132,6 +134,7 @@ export default function ComponentsAppsCalendar() {
         end: dateFormat(obj.end),
         type: obj.classNames ? obj.classNames[0] : "primary",
         description: obj.extendedProps ? obj.extendedProps.description : "",
+        userId: obj.extendedProps ? obj.extendedProps.userId : "",
       });
       setMinStartDate(new Date());
     } else {
@@ -181,14 +184,29 @@ export default function ComponentsAppsCalendar() {
   };
 
   const updateEvent = async () => {
-    setBookingCreated(false);
-    const localDate = new Date(params.start);
-    const adjustedDate = new Date(localDate.getTime() - localDate.getTimezoneOffset() * 60000);
-    
-    await update({ paramId: params.id, time: adjustedDate,  specialty_type: ['beard'] });
-    
-    setBookingCreated(true);
-    setIsAddEventModal(false);  
+    const { user } = JSON.parse(localStorage.getItem('user') || '{}');
+
+    if (user.id !== params.userId) {
+      MySwal.fire({
+        title: 'Você não tem permissão para editar esse agendamento',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 8000,
+        showCloseButton: true,
+        color: 'white',
+        background: '#b49100',
+      });
+    } else {
+      setBookingCreated(false);
+      const localDate = new Date(params.start);
+      const adjustedDate = new Date(localDate.getTime() - localDate.getTimezoneOffset() * 60000);
+      
+      await update({ paramId: params.id, time: adjustedDate, specialty_type: selectedServices });
+      
+      setBookingCreated(true);
+      setIsAddEventModal(false);  
+    }
   };
 
   const adjustMinutes = (dateStr: string) => {
