@@ -40,7 +40,7 @@ export default function Header({ isHome }: HeaderProps) {
               <button onClick={() => push("/toSchedule")} className="py-1 px-6 border border-[var(--primary-color)] text-white hover:bg-white hover:text-black rounded">Agendandos hoje</button>
             }
             { authInfo.user.isAdmin && 
-              <button onClick={() => push("/")} className="py-1 px-6 rounded bg-[var(--primary-color)] hover:bg-white hover:text-black">Cadastrar barbeiros</button>
+              <button onClick={() => push("/registerBarber")} className="py-1 px-6 rounded bg-[var(--primary-color)] hover:bg-white hover:text-black">Cadastrar barbeiros</button>
             }
             { (pathname === '/mySchedule' || pathname === '/') && !authInfo.user.isAdmin && 
               <button onClick={() => push("/toSchedule")} className="py-1 px-6 rounded bg-[var(--primary-color)] hover:bg-white hover:text-black">Novo agendamento</button>
