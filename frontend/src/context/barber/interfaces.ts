@@ -16,4 +16,5 @@ export interface CreateCredentials {
   name: string;
   age: number;
   specialty: string[];
+  hiringDate: Date;
 }

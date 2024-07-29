@@ -12,7 +12,7 @@ export class Barber {
   @Column()
   age: number;
 
-  @Column({ default: new Date() })
+  @Column()
   hiringDate: Date;
 
   @Column('text', { array: true })

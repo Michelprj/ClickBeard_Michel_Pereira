@@ -34,10 +34,10 @@ function BarberProvider({ children }: IBarberProviderProps) {
   const [barber, setBarber] = useState<IBarber>({} as IBarber);
   const MySwal = withReactContent(Swal);
 
-  async function create({ name, age, specialty }: CreateCredentials) {
+  async function create({ name, age, specialty, hiringDate }: CreateCredentials) {
     setLoading(true);
     try {
-      const response = await BarberHTTPService.create(name, age, specialty);
+      const response = await BarberHTTPService.create(name, age, specialty, hiringDate);
       const barber = response.data;
       
       setBarber(barber);

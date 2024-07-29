@@ -1,10 +1,4 @@
-import {
-  IsArray,
-  IsDate,
-  IsNumber,
-  IsOptional,
-  IsString,
-} from 'class-validator';
+import { IsArray, IsDate, IsNumber, IsString } from 'class-validator';
 
 export class CreateBarberDto {
   @IsString()
@@ -14,7 +8,6 @@ export class CreateBarberDto {
   age: number;
 
   @IsDate()
-  @IsOptional()
   hiringDate: Date;
 
   @IsArray()
