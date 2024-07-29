@@ -63,7 +63,7 @@ function SchedulesProvider({ children }: ISchedulesProviderProps) {
         ?  'O horário de reserva deve ser entre 08:00 e 17:30' 
         : error.response.data.message === "Barber not found" 
         ? 'Barbeiro não encontrado'
-        : 'Esse horário já está reservado',
+        : 'O Barbeiro escolhido já possui esse horário reservado',
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
@@ -128,7 +128,7 @@ function SchedulesProvider({ children }: ISchedulesProviderProps) {
         ?  'O horário de reserva deve ser entre 08:00 e 17:30' 
         : error.response.data.message === "Barber not found" 
         ? 'Barbeiro não encontrado'
-        : 'Esse horário já está reservado',
+        : 'O Barbeiro escolhido já possui esse horário reservado',
         toast: true,
         position: 'top-end',
         showConfirmButton: false,
