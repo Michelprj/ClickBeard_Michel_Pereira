@@ -51,7 +51,11 @@ export class BookingService {
       const serviceTime = moment(service.time, 'HH:mm').format('HH:mm');
       const createTime = moment(createBookingDto.time, 'HH:mm').format('HH:mm');
 
-      return serviceDate === createDate && serviceTime === createTime;
+      return (
+        serviceDate === createDate &&
+        serviceTime === createTime &&
+        service.barber.id === barber.id
+      );
     });
 
     if (busyBarber) {
