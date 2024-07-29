@@ -8,9 +8,11 @@ import { useRouter } from "next/navigation";
 import { valuesList } from "@/mocks/values.mock";
 import { barbers } from "@/mocks/barbers.mock";
 import Footer from "@/components/interface/footer";
+import { useAuth } from "@/context/auth/auth";
 
 export default function Home() {
   const { push } = useRouter();
+  const { authInfo } = useAuth()
 
   useEffect(() => {
     const createAdmin = async () => {
@@ -32,7 +34,7 @@ export default function Home() {
 
           <button
             className="bg-[var(--primary-color)] text-black font-semibold hover:text-white px-4 py-2 rounded mt-4"
-            onClick={() => push('/login')}
+            onClick={() => push(authInfo.accessToken ? '/toShedule' : '/login')}
           >Agende seu horário</button>
         </div>
       </section>
