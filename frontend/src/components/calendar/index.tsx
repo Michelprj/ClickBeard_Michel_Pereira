@@ -61,7 +61,6 @@ export default function ComponentsAppsCalendar() {
   }, [bookingCreated]);
 
   const [minStartDate, setMinStartDate] = useState<any>("");
-  const [minEndDate, setMinEndDate] = useState<any>("");
   const defaultParams = {
     id: null,
     title: "",
@@ -135,10 +134,8 @@ export default function ComponentsAppsCalendar() {
         description: obj.extendedProps ? obj.extendedProps.description : "",
       });
       setMinStartDate(new Date());
-      setMinEndDate(dateFormat(obj.start));
     } else {
       setMinStartDate(new Date());
-      setMinEndDate(new Date());
     }
     setIsAddEventModal(true);
   };
@@ -217,7 +214,6 @@ export default function ComponentsAppsCalendar() {
     const dateStr = event.target.value;
     if (dateStr) {
       const adjustedDate = adjustMinutes(dateStr);
-      setMinEndDate(adjustedDate);
       setParams({ ...params, start: adjustedDate, end: "" });
     }
   };

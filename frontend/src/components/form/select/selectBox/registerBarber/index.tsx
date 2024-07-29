@@ -55,7 +55,9 @@ export default function CustomSelectRegisterBarber<T extends FieldValues>({
             <div
               className={`bg-[#222] ${
                 value.length === 0 ? "text-[#999999]" : "text-white"
-              } py-2 px-3 rounded cursor-pointer`}
+              } py-2.5 px-3 rounded cursor-pointer text-sm ${
+                error ? 'border border-white' : ''
+              }`}
               onClick={() => setIsOpen(!isOpen)}
             >
               {value.length > 0
