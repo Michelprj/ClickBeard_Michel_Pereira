@@ -36,7 +36,7 @@ export default function Header({ isHome }: HeaderProps) {
         }
         { authInfo.accessToken ? (
           <div className="flex items-center gap-6">
-            { pathname === '/' && authInfo.user.isAdmin && 
+            { (pathname === '/' || pathname === '/registerBarber') && authInfo.user.isAdmin && 
               <button onClick={() => push("/toSchedule")} className="py-1 px-6 border border-[var(--primary-color)] text-white hover:bg-white hover:text-black rounded">Agendandos hoje</button>
             }
             { authInfo.user.isAdmin && 
