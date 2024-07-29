@@ -219,7 +219,7 @@ export default function ComponentsAppsCalendar() {
   };
   
   return (
-    <div className="px-20 py-24">
+    <div className="px-4 md:px-20 py-24">
       <div className="panel mb-5">
         <div className="mb-4 flex flex-col items-center justify-center sm:flex-row sm:justify-between">
           <div className="mt-2">
@@ -241,7 +241,7 @@ export default function ComponentsAppsCalendar() {
         <div className="calendar-wrapper">
           <FullCalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-            initialView="timeGridDay"
+            initialView="timeGridWeek"
             eventTextColor="#ffffff"
             eventColor="var(--primary-color)"
             headerToolbar={{
