@@ -49,10 +49,14 @@ export default function Header({ isHome }: HeaderProps) {
               <button onClick={() => push("/mySchedule")} className="py-1 px-6 border border-[var(--primary-color)] text-white hover:bg-white hover:text-black rounded">Meus agendamentos</button>
             }
             <div className="space-x-4 flex items-center">
-              <button onClick={() => push("/")}>
+              <button onClick={() => push("/")} className="flex items-end hover:text-[var(--primary-color)]">
                 <MdPerson size={25} />
+                <p className="text-sm ml-2">{authInfo.user.name}</p>
               </button>
-              <button onClick={() => handleLogout()}>
+
+              <span className="border h-6 mx-2 bg-white" />
+
+              <button onClick={() => handleLogout()} className="hover:text-[var(--primary-color)]">
                 <RxExit size={25} />
               </button>
             </div>
