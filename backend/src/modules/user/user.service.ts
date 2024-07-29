@@ -7,15 +7,15 @@ import {
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from './entities/user.entity';
+import { Users } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    @InjectRepository(Users)
+    private readonly usersRepository: Repository<Users>,
   ) {}
 
   async create(createUserDto: CreateUserDto) {
@@ -34,18 +34,18 @@ export class UserService {
       password: hashedPassword,
     };
 
-    await this.userRepository.save(user);
+    await this.usersRepository.save(user);
 
     return user;
   }
 
   async findAll() {
-    return await this.userRepository.find();
+    return await this.usersRepository.find();
   }
 
   async findOne(id: number) {
     await this.userFound(id);
-    return await this.userRepository.findOne({ where: { id } });
+    return await this.usersRepository.findOne({ where: { id } });
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
@@ -60,12 +60,12 @@ export class UserService {
         ? await bcrypt.hash(updateUserDto.password, saltOrRounds)
         : user.password,
     };
-    return await this.userRepository.update(id, userUpdate);
+    return await this.usersRepository.update(id, userUpdate);
   }
 
   async remove(id: number, req: any) {
     const user = await this.userFound(id);
-    const userLogged = await this.userRepository.findOne({
+    const userLogged = await this.usersRepository.findOne({
       where: { id: req.userId },
     });
 
@@ -73,11 +73,11 @@ export class UserService {
       throw new BadRequestException('You can only delete your own account');
     }
 
-    return await this.userRepository.delete(id);
+    return await this.usersRepository.delete(id);
   }
 
   private async checkEmailUnique(email: string) {
-    const user = await this.userRepository.findOne({
+    const user = await this.usersRepository.findOne({
       where: { email },
     });
 
@@ -87,7 +87,7 @@ export class UserService {
   }
 
   async findByEmail(email: string) {
-    const user = await this.userRepository.findOne({ where: { email } });
+    const user = await this.usersRepository.findOne({ where: { email } });
 
     if (!user) {
       throw new NotFoundException('User not found');
@@ -97,7 +97,7 @@ export class UserService {
   }
 
   private async userFound(id: number) {
-    const user = await this.userRepository.findOne({ where: { id } });
+    const user = await this.usersRepository.findOne({ where: { id } });
 
     if (!user) {
       throw new NotFoundException('User not found');

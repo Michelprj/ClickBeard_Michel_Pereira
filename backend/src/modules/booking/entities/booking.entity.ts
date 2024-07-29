@@ -1,8 +1,14 @@
 import { Barber } from '../..//barber/entities/barber.entity';
-import { User } from '../../user/entities/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Users } from '../../user/entities/user.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
-@Entity('booking')
+@Entity({ name: 'booking' })
 export class Booking {
   @PrimaryGeneratedColumn()
   id: number;
@@ -10,15 +16,17 @@ export class Booking {
   @Column()
   time: Date;
 
-  @Column()
-  specialty_type: string;
+  @Column('text', { name: 'specialty_type', array: true, nullable: true })
+  specialtyType: string[];
 
-  @ManyToOne(() => User, (user) => user.bookings)
-  user: User;
+  @ManyToOne(() => Users, (users) => users.bookings)
+  @JoinColumn({ name: 'user_id' })
+  users: Users;
 
   @ManyToOne(() => Barber, (barber) => barber.bookings)
+  @JoinColumn({ name: 'barber_id' })
   barber: Barber;
 
-  @Column({ default: true })
-  is_confirmed: boolean;
+  @Column({ name: 'is_confirmed', default: true })
+  isConfirmed: boolean;
 }

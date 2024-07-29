@@ -5,7 +5,7 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
-  isAdmin: boolean;
+  isadmin: boolean;
 }
 
 export interface IRegisterProviderProps {
@@ -14,7 +14,7 @@ export interface IRegisterProviderProps {
 
 export interface IUserCredentials {
   accessToken: string;
-  user: IUser;
+  users: IUser;
 }
 
 export interface SignUpCredentials {

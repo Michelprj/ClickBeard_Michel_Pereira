@@ -37,8 +37,7 @@ export default function AllSchedules() {
     };
 
     const formatSchedule = (schedule: any, specialtyMap: { [key: string]: string }) => {
-      const specialtyTypeFormatted = schedule.specialty_type
-        .split(', ')
+      const specialtyTypeFormatted = schedule.specialtyType
         .map((specialty: string) => specialtyMap[specialty] || specialty)
         .join(', ');
 
@@ -46,7 +45,7 @@ export default function AllSchedules() {
 
       return {
         ...schedule,
-        specialty_type: specialtyTypeFormatted,
+        specialtyType: specialtyTypeFormatted,
         time: time.format('DD-MM-YYYY') + ' às ' + time.format('HH:mm'),
       };
     }
@@ -65,8 +64,8 @@ export default function AllSchedules() {
             <div className="space-y-1 text-sm">
               <h2><b>Data:</b> {schedule.time}</h2>
               <h2><b>Barbeiro:</b> {schedule.barber.name}</h2>
-              <h2><b>Serviços:</b> {schedule.specialty_type}</h2>
-              <h2><b>Cliente:</b> {schedule.user.name}</h2>
+              <h2><b>Serviços:</b> {schedule.specialtyType}</h2>
+              <h2><b>Cliente:</b> {schedule.users.name}</h2>
             </div>
           </div>
         ))

@@ -11,5 +11,5 @@ export class SignUpDto {
   password: string;
 
   @IsOptional()
-  isAdmin: boolean;
+  isadmin: boolean;
 }

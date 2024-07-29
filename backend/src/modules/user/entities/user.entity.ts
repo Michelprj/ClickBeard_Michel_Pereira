@@ -1,8 +1,8 @@
 import { Booking } from '../../booking/entities/booking.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
-export class User {
+@Entity({ name: 'users' })
+export class Users {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -15,9 +15,9 @@ export class User {
   @Column()
   password: string;
 
-  @Column({ default: false })
-  isAdmin: boolean;
+  @Column({ name: 'is_admin', default: false })
+  isadmin: boolean;
 
-  @OneToMany(() => Booking, (booking) => booking.user)
+  @OneToMany(() => Booking, (booking) => booking.users)
   bookings: Booking[];
 }

@@ -1,7 +1,7 @@
 import { Booking } from '../../booking/entities/booking.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('barber')
+@Entity({ name: 'barber' })
 export class Barber {
   @PrimaryGeneratedColumn()
   id: number;
@@ -12,7 +12,7 @@ export class Barber {
   @Column()
   age: number;
 
-  @Column()
+  @Column({ name: 'hiring_date' })
   hiringDate: Date;
 
   @Column('text', { array: true })

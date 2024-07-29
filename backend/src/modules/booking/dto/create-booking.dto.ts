@@ -5,7 +5,7 @@ export class CreateBookingDto {
   time: Date;
 
   @IsArray()
-  specialty_type: string[];
+  specialtyType: string[];
 
   @IsBoolean()
   @IsOptional()

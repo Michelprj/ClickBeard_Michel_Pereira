@@ -64,8 +64,8 @@ export class BookingService {
 
     const bookingCreated = {
       ...createBookingDto,
-      specialty_type: createBookingDto.specialty_type.join(', '),
-      user,
+      specialtyType: createBookingDto.specialtyType,
+      users: user,
       barber,
     };
 
@@ -73,13 +73,15 @@ export class BookingService {
   }
 
   async findAll() {
-    return await this.bookingRepository.find({ relations: ['user', 'barber'] });
+    return await this.bookingRepository.find({
+      relations: ['users', 'barber'],
+    });
   }
 
   async findOne(id: number) {
     const booking = await this.bookingRepository.findOne({
       where: { id },
-      relations: ['user', 'barber'],
+      relations: ['users', 'barber'],
     });
 
     if (!booking) {
@@ -92,9 +94,8 @@ export class BookingService {
   async update(id: number, updateBookingDto: UpdateBookingDto) {
     const bookingFormatted = {
       ...updateBookingDto,
-      specialty_type:
-        updateBookingDto.specialty_type &&
-        updateBookingDto.specialty_type.join(', '),
+      specialtyType:
+        updateBookingDto.specialtyType && updateBookingDto.specialtyType,
     };
 
     await this.bookingRepository.update(id, bookingFormatted);
@@ -106,8 +107,8 @@ export class BookingService {
 
   async findAllByBarber(barberId: number) {
     const barberServices = await this.bookingRepository.find({
-      where: { barber: { id: barberId }, is_confirmed: true },
-      relations: ['user', 'barber'],
+      where: { barber: { id: barberId }, isConfirmed: true },
+      relations: ['users', 'barber'],
     });
 
     if (barberServices) {

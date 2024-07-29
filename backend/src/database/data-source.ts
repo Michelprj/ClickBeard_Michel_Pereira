@@ -12,8 +12,9 @@ export const dataSourceOptions: DataSourceOptions & SeederOptions = {
   password: process.env.DB_PASS || '123456',
   database: process.env.DB_NAME || 'postgres',
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-  synchronize: process.env.NODE_ENV === 'development',
-  seeds: ['dist/db/seeds/**/*.js'],
+  migrations: [__dirname + '/migrations/{.ts,*.js}'],
+  migrationsRun: true,
+  seeds: ['dist/database/seeds/*.js'],
 };
 
 export default new DataSource(dataSourceOptions);

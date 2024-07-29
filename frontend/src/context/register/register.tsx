@@ -65,7 +65,7 @@ function RegisterProvider({ children }: IRegisterProviderProps) {
         background: '#b13838',
       });
 
-      console.log(error.response.data.message);
+      console.log(error.response.data?.message);
     } finally {
       setLoading(false);
     }

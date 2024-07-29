@@ -2,8 +2,6 @@
 
 import Header from "@/components/interface/header";
 import Image from "next/image";
-import { useEffect } from "react";
-import { api } from "@/infrastructure/api/axios";
 import { useRouter } from "next/navigation";
 import { valuesList } from "@/mocks/values.mock";
 import { barbers } from "@/mocks/barbers.mock";
@@ -13,14 +11,6 @@ import { useAuth } from "@/context/auth/auth";
 export default function Home() {
   const { push } = useRouter();
   const { authInfo } = useAuth()
-
-  useEffect(() => {
-    const createAdmin = async () => {
-      await api.post('/');
-    }
-
-    createAdmin();
-  }, []);
 
   return (
     <main className="flex min-h-screen flex-col">

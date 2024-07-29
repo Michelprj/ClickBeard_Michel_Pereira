@@ -18,7 +18,7 @@ export default function MySchedule() {
   useEffect(() => {
     const findAllSchedules = async () => {
       const response: any = await findAll();
-      const mySchedule = response.filter((schedule: ISchedules) => schedule.user.id === authInfo.user.id && schedule.is_confirmed === true);
+      const mySchedule = response.filter((schedule: ISchedules) => schedule.users.id === authInfo.user.id && schedule.isConfirmed === true);
 
       const specialtyMap: { [key: string]: string } = {
         hair: 'Corte de cabelo',
@@ -27,8 +27,7 @@ export default function MySchedule() {
       };
     
       const myScheduleFormatted = mySchedule.map((schedule: any) => {
-        const specialtyTypeFormatted = schedule.specialty_type
-          .split(', ')
+        const specialtyTypeFormatted = schedule.specialtyType
           .map((specialty: string) => specialtyMap[specialty] || specialty)
           .join(', ');
     
@@ -36,7 +35,7 @@ export default function MySchedule() {
     
         return {
           ...schedule,
-          specialty_type: specialtyTypeFormatted,
+          specialtyType: specialtyTypeFormatted,
           time: time.format('DD-MM-YYYY') + ' às ' + time.format('HH:mm'),
         };
       });
@@ -72,7 +71,7 @@ export default function MySchedule() {
                 <div className="space-y-1 text-sm">
                   <h2><b>Data:</b> { schedule.time }</h2>
                   <h2><b>Barbeiro:</b> { schedule.barber.name }</h2>
-                  <h2><b>Serviços:</b> { schedule.specialty_type }</h2>
+                  <h2><b>Serviços:</b> { schedule.specialtyType }</h2>
                 </div>
 
                 <button

@@ -37,10 +37,10 @@ function SchedulesProvider({ children }: ISchedulesProviderProps) {
   const [schedule, setSchedule] = useState<ISchedules>({} as ISchedules);
   const MySwal = withReactContent(Swal);
 
-  async function create({ barberId, time, specialty_type }: CreateCredentials) {
+  async function create({ barberId, time, specialtyType }: CreateCredentials) {
     setLoading(true);
     try {
-      const response = await SchedulesHTTPService.create(barberId, time, specialty_type);
+      const response = await SchedulesHTTPService.create(barberId, time, specialtyType);
       const schedule = response.data;
       
       setSchedule(schedule);
@@ -102,10 +102,10 @@ function SchedulesProvider({ children }: ISchedulesProviderProps) {
     }
   }
 
-  const update = async ({ paramId, time,  specialty_type }: UpdateCredentials) => {
+  const update = async ({ paramId, time,  specialtyType }: UpdateCredentials) => {
     setLoading(true);
     try {
-      const response = await SchedulesHTTPService.update(paramId, time, specialty_type);
+      const response = await SchedulesHTTPService.update(paramId, time, specialtyType);
       const schedule = response.data;
 
       setSchedule(schedule);

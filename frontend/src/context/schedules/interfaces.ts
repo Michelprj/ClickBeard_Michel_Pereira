@@ -5,10 +5,10 @@ import { IBarber } from '../barber/interfaces';
 export interface ISchedules {
   id: string;
   time: Date;
-  specialty_type: string[];
-  user: IUser;
+  specialtyType: string[];
+  users: IUser;
   barber: IBarber;
-  is_confirmed?: boolean;
+  isConfirmed?: boolean;
 }
 
 export interface ISchedulesProviderProps {
@@ -18,11 +18,11 @@ export interface ISchedulesProviderProps {
 export interface CreateCredentials {
   barberId: string;
   time: Date;
-  specialty_type: string[];
+  specialtyType: string[];
 }
 
 export interface UpdateCredentials {
   paramId: string;
   time: Date;
-  specialty_type: string[];
+  specialtyType: string[];
 }

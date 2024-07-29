@@ -37,9 +37,10 @@ export default function ComponentsAppsCalendar() {
   useEffect(() => {
     const findAll = async () => {
       const response: any = await findAllSchedules();
-      const filteredSchedules = response.filter((schedule: ISchedules) => schedule.is_confirmed === true);
+      const filteredSchedules = response.filter((schedule: ISchedules) => schedule.isConfirmed === true);
 
       const eventsAll = filteredSchedules.map((schedule: ISchedules) => {
+        
         const startDate = new Date(schedule.time);
         startDate.setHours(startDate.getHours() + 3);
         const endDate = new Date(startDate);
@@ -47,12 +48,12 @@ export default function ComponentsAppsCalendar() {
 
         return {
           id: schedule.id,
-          title: schedule.user.name,
+          title: schedule.users.name,
           start: startDate,
           end: endDate,
           classNames: "",
           description: "",
-          userId: schedule.user.id, 
+          userId: schedule.users.id, 
         };
       });
       setEvents(eventsAll);
@@ -173,7 +174,7 @@ export default function ComponentsAppsCalendar() {
       await createSchedule({
         barberId: selectedBarber,
         time: adjustedDate,
-        specialty_type: selectedServices,
+        specialtyType: selectedServices,
       });
       
       setBookingCreated(true);
@@ -202,7 +203,7 @@ export default function ComponentsAppsCalendar() {
       const localDate = new Date(params.start);
       const adjustedDate = new Date(localDate.getTime() - localDate.getTimezoneOffset() * 60000);
       
-      await update({ paramId: params.id, time: adjustedDate, specialty_type: selectedServices });
+      await update({ paramId: params.id, time: adjustedDate, specialtyType: selectedServices });
       
       setBookingCreated(true);
       setIsAddEventModal(false);  

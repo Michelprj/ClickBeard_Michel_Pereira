@@ -6,15 +6,14 @@ import { UserModule } from './modules/user/user.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './modules/auth/guards/auth.guard';
 import { DatabaseModule } from './database/database.module';
-import { AppController } from './app.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './modules/user/entities/user.entity';
+import { Users } from './modules/user/entities/user.entity';
 import { BarberModule } from './modules/barber/barber.module';
 import { BookingModule } from './modules/booking/booking.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([Users]),
     DatabaseModule,
     ConfigModule.forRoot({
       isGlobal: true,
@@ -30,7 +29,7 @@ import { BookingModule } from './modules/booking/booking.module';
     BarberModule,
     BookingModule,
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [
     {
       provide: APP_GUARD,
