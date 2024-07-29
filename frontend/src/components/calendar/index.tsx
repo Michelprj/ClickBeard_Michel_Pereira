@@ -249,7 +249,15 @@ export default function ComponentsAppsCalendar() {
               center: "title",
               right: "dayGridMonth,timeGridWeek,timeGridDay",
             }}
-            editable={true}
+            buttonText={{
+              today: 'Hoje',
+              month: 'Mês',
+              week: 'Semana',
+              day: 'Dia',
+              list: 'Lista'
+            }}
+            allDayText='Dia todo'
+            editable={false}
             dayMaxEvents={true}
             selectable={true}
             droppable={true}
@@ -258,6 +266,15 @@ export default function ComponentsAppsCalendar() {
             select={(event: any) => editDate(event)}
             events={events}
             locale={"pt-br"}
+            eventContent={(eventInfo: any) => {
+              return (
+                <div className="flex items-center font-bold">
+                  <div>{eventInfo.timeText}</div>
+                  <div className="mx-1">-</div>
+                  <div>{eventInfo.event.title}</div>
+                </div>
+              );
+            }}
           />
         </div>
       </div>
