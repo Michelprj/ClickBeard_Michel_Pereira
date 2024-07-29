@@ -49,7 +49,7 @@ export default function Header({ isHome }: HeaderProps) {
           Agenda completa
         </Button>
       )}
-      {isAdmin && (pathname !== '/registerBarber' && pathname !== '/') && (
+      {isAdmin && pathname !== '/registerBarber' && (
         <Button
           onClick={() => push("/registerBarber")}
           className="bg-[var(--primary-color)] hover:bg-white hover:text-black"
@@ -57,7 +57,7 @@ export default function Header({ isHome }: HeaderProps) {
           Cadastrar barbeiros
         </Button>
       )}
-      {!isAdmin && (pathname === '/mySchedule' || pathname === '/') && (
+      {!isAdmin && pathname === '/mySchedule' && (
         <Button
           onClick={() => push("/toSchedule")}
           className="bg-[var(--primary-color)] hover:bg-white hover:text-black"
@@ -65,7 +65,7 @@ export default function Header({ isHome }: HeaderProps) {
           Novo agendamento
         </Button>
       )}
-      {isAdmin && (pathname !== '/allSchedules' && pathname !== '/') && (
+      {isAdmin && pathname !== '/allSchedules' && (
         <Button
           onClick={() => push("/allSchedules")}
           className="bg-[var(--primary-color)] hover:bg-white hover:text-black"
@@ -114,7 +114,7 @@ export default function Header({ isHome }: HeaderProps) {
   return (
     <div className="h-16 bg-black flex justify-between px-6 md:px-0 md:justify-around items-center text-white fixed top-0 w-full z-30">
       <div>
-        <button onClick={() => push("/")} className="font-bold text-2xl">CLICKBEARD</button>
+        <button onClick={() => push( isLoggedIn ? "" : "/")} className="font-bold text-2xl">CLICKBEARD</button>
       </div>
       <div className="flex gap-8 font-semibold items-center hidden lg:flex">
         {isHome && (
