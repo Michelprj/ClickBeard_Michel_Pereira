@@ -55,6 +55,18 @@ function BarberProvider({ children }: IBarberProviderProps) {
     
     } catch (error: any) {
       console.log(error.response.data.message);
+      MySwal.fire({
+        title: error.response.data.message === 'User not found' 
+        ? 'Usuário não encontrado.' 
+        : 'Você não tem permissão para cadastrar barbeiros.',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 8000,
+        showCloseButton: true,
+        color: 'white',
+        background: '#b13838',
+      });
     } finally {
       setLoading(false);
     }
