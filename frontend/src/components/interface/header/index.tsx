@@ -37,7 +37,7 @@ export default function Header({ isHome }: HeaderProps) {
   }
 
   const isAdmin = authInfo?.user?.isAdmin;
-  const isLoggedIn = !!authInfo.accessToken;
+  const isLoggedIn = !!authInfo?.accessToken;
 
   const renderAuthButtons = () => (
     <div className="block lg:flex items-center gap-6 w-full">
@@ -84,7 +84,7 @@ export default function Header({ isHome }: HeaderProps) {
       <div className="space-x-4 flex items-center justify-center my-8 lg:my-0">
         <button onClick={() => toProfile()} className="flex items-end hover:text-[var(--primary-color)]">
           <MdPerson size={25} />
-          <p className="text-sm ml-2">{authInfo.user.name}</p>
+          <p className="text-sm ml-2">{authInfo?.user?.name}</p>
         </button>
         <span className="border h-6 mx-2 bg-white" />
         <button onClick={handleLogout} className="hover:text-[var(--primary-color)]">

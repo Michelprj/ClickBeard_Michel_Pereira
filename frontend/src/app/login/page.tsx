@@ -43,7 +43,7 @@ export default function Login() {
       <div className="relative z-20 bg-[var(--primary-color)] w-11/12 sm:w-9/12 md:w-7/12 lg:w-6/12 xl:w-4/12 p-6 rounded">
         <h1 className="text-black text-center text-2xl font-semibold mb-6">Login</h1>
         {
-          authInfo.accessToken ? (
+          authInfo?.accessToken ? (
             <div>
               <p className="text-white text-center text-2xl font-semibold my-20">Login realizado com sucesso!</p>
 

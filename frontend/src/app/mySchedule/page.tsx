@@ -18,7 +18,7 @@ export default function MySchedule() {
   useEffect(() => {
     const findAllSchedules = async () => {
       const response: any = await findAll();
-      const mySchedule = response.filter((schedule: ISchedules) => schedule.users.id === authInfo.user.id && schedule.isConfirmed === true);
+      const mySchedule = response.filter((schedule: ISchedules) => schedule.users.id === authInfo?.user?.id && schedule.isConfirmed === true);
 
       const specialtyMap: { [key: string]: string } = {
         hair: 'Corte de cabelo',
