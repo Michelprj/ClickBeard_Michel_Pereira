@@ -76,7 +76,7 @@ export default function Register() {
             className={`${!isValid ? 'bg-[#373737] text-black hover:cursor-not-allowed' : 'bg-black text-white' } w-full py-2 rounded font-semibold`}
             disabled={!isValid}
           >
-            {loading ? <Loader /> : 'Entrar'}
+            {loading ? <Loader /> : 'Cadastrar'}
           </button>
         </form>
       </div>
