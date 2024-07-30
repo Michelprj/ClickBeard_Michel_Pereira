@@ -66,6 +66,7 @@ export default function AllSchedules() {
               <h2><b>Barbeiro:</b> {schedule.barber.name}</h2>
               <h2><b>Serviços:</b> {schedule.specialtyType}</h2>
               <h2><b>Cliente:</b> {schedule.users.name}</h2>
+              {!schedule.isConfirmed && <h2 className="text-red-600"><b>Cancelado</b></h2> } 
             </div>
           </div>
         ))
