@@ -9,8 +9,8 @@ export class CreateData1722294231322 implements MigrationInterface {
 
     await queryRunner.query(`
       INSERT INTO users (name, email, password, is_admin) VALUES 
-      ('admin', 'admin@example.com', '${adminPassword}', true),
-      ('user', 'user@example.com', '${userPassword}', false);
+      ('Admin', 'admin@example.com', '${adminPassword}', true),
+      ('User Test', 'user@example.com', '${userPassword}', false);
     `);
   }
 
