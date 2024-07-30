@@ -1,5 +1,6 @@
 import { HTMLInputTypeAttribute } from 'react'
 import { FieldValues, Control, Controller, Path } from 'react-hook-form'
+import { IoMdEye, IoMdEyeOff } from 'react-icons/io'
 
 interface InputProps<T extends FieldValues> {
   label: string
@@ -8,6 +9,9 @@ interface InputProps<T extends FieldValues> {
   placeholder: string
   error?: string
   control: Control<T>
+  isPassword?: boolean
+  isText?: boolean
+  onClick?: () => void
 }
 
 const Input = <T extends FieldValues>({
@@ -17,6 +21,9 @@ const Input = <T extends FieldValues>({
   placeholder,
   error,
   control,
+  isPassword = false,
+  isText = true,
+  onClick,
 }: InputProps<T>) => (
   <div className="flex flex-col justify-center w-full">
     <label htmlFor={id} className="flex flex-col text-black">
@@ -30,7 +37,7 @@ const Input = <T extends FieldValues>({
           <div className='flex justify-between relative'>
             <input
               id={id}
-              type={type}
+              type={isPassword ? (isText ? 'text' : 'password') : type}
               placeholder={placeholder}
               autoComplete="off"
               {...field}
@@ -38,6 +45,16 @@ const Input = <T extends FieldValues>({
                 error ? 'border-white' : ''
               }`}
             />
+
+            { isPassword && (
+              <button
+                type="button"
+                className="text-[var(--white)] text-sm font-semibold absolute right-3 top-3"
+                onClick={onClick}
+              >
+                {isText ? <IoMdEyeOff size={20} color='white' />: <IoMdEye size={20} color='white' /> }
+              </button>
+              )}
           </div>
         )}
       />

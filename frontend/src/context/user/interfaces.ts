@@ -8,16 +8,13 @@ export interface IUser {
   isAdmin: boolean;
 }
 
-export interface IAuthProviderProps {
+export interface IUserProviderProps {
   children: ReactNode;
 }
 
-export interface IUserCredentials {
-  accessToken: string;
-  user: IUser;
-}
-
-export interface SignInCredentials {
+export interface UpdateCredentials {
+  id: string;
+  name: string;
   email: string;
-  password: string;
+  password?: string;
 }

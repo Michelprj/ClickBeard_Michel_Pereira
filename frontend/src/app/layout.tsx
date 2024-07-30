@@ -6,6 +6,7 @@ import { AuthProvider } from "@/context/auth/auth";
 import RegisterProvider from "@/context/register/register";
 import SchedulesProvider from "@/context/schedules/schedules";
 import BarberProvider from "@/context/barber/barber";
+import { UserProvider } from "@/context/user/user";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +25,11 @@ export default function RootLayout({
       <RegisterProvider>
         <SchedulesProvider>
           <BarberProvider>
-            <html lang="pt-BR">
-              <body className={inter.className}>{children}</body>
-            </html>
+            <UserProvider>
+              <html lang="pt-BR">
+                <body className={inter.className}>{children}</body>
+              </html>
+            </UserProvider>
           </BarberProvider>
         </SchedulesProvider>
       </RegisterProvider>
