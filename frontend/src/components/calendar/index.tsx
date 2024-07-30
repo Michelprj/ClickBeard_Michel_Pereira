@@ -338,7 +338,7 @@ export default function ComponentsAppsCalendar() {
                     <MdClose color="white" size={28} />
                   </button>
                   <div className="bg-[#222] text-white py-3 text-lg font-semibold pl-6 pr-5">
-                    {params.id ? "Editar evento" : "Adicionar evento"}
+                    {params.id ? "Editar agendamento" : "Adicionar agendamento"}
                   </div>
                   <div className="p-5 bg-[#191919] text-white">
                     <form className="space-y-5">
