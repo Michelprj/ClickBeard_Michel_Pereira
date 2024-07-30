@@ -87,7 +87,13 @@ Ao subir a aplicação o banco de dados será populado com dois cadastros de usu
   - **mocks/**: Dados fixos mockados para uso na aplicação.
   - **router/**: Rotas protegidas.
   - **schemas/**: Configuração e validação para formulários com Zod.
-  
+
+## Documentação
+Para acessar a documentação <b>Swagger</b> da api basta acessar:
+  ```sh
+  http://localhost:3003/api
+  ```
+
 ## Comandos Úteis
 
 - Build e iniciar os containers Docker
