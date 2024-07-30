@@ -1,5 +1,12 @@
 import { ReactNode } from 'react';
-import { IUser } from '../user/interfaces';
+
+export interface IUser {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  isAdmin: boolean;
+}
 
 export interface IAuthProviderProps {
   children: ReactNode;

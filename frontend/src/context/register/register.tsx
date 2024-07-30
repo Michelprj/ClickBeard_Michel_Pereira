@@ -11,11 +11,11 @@ import RegisterHTTPService from '@/infrastructure/services/RegisterHTTPService';
 
 import {
   IRegisterProviderProps,
-  IUser,
   SignUpCredentials,
 } from './interfaces';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { IUser } from '../user/interfaces';
 
 type RegisterContextData = {
   signUp(credentials: SignUpCredentials): Promise<void>;

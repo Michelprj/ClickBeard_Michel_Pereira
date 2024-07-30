@@ -16,12 +16,12 @@ import AuthHTTPService from '@/infrastructure/services/AuthHTTPService';
 
 import {
   IAuthProviderProps,
-  IUser,
   IUserCredentials,
   SignInCredentials,
 } from './interfaces';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { IUser } from '../user/interfaces';
 
 type AuthContextData = {
   signIn(credentials: SignInCredentials): Promise<void>;
@@ -71,7 +71,7 @@ function AuthProvider({ children }: IAuthProviderProps) {
         const storedUserData = localStorage.getItem('user');
         if (storedUserData) {
           const userData = JSON.parse(storedUserData);
-          setUser(userData.user);
+          setUser(userData.user);          
           setAuthInfo({ accessToken: token, user: userData.user });
           api.defaults.headers['Authorization'] = `Bearer ${token}`;
         } else {
