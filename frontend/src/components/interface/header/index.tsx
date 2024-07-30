@@ -81,6 +81,14 @@ export default function Header({ isHome }: HeaderProps) {
           Meus agendamentos
         </Button>
       )}
+       {isAdmin && pathname !== '/allBarbers' && (
+        <Button
+          onClick={() => push("/allBarbers")}
+          className="border border-[var(--primary-color)] text-white hover:bg-white hover:text-black"
+        >
+          Editar barbeiros
+        </Button>
+      )}
       <div className="space-x-4 flex items-center justify-center my-8 lg:my-0">
         <button onClick={() => toProfile()} className="flex items-end hover:text-[var(--primary-color)]">
           <MdPerson size={25} />

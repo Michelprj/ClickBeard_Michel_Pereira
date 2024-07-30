@@ -4,5 +4,6 @@ export const protectedRoutes = [
   '/registerBarber',
   '/allSchedules',
   '/profile',
+  '/allBarbers',
 ];
 export const authRoutes = ['/'];

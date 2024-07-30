@@ -23,6 +23,7 @@ type BarberContextData = {
   setBarber: Dispatch<SetStateAction<IBarber>>;
   setLoading: Dispatch<SetStateAction<boolean>>;
   findAll(): Promise<void>;
+  remove(id: string): Promise<void>;
 };
 
 export const BarberContext = createContext({} as BarberContextData);
@@ -94,6 +95,41 @@ function BarberProvider({ children }: IBarberProviderProps) {
     }
   }
 
+  const remove = async (id: string) => {
+    setLoading(true);
+    try {
+      await BarberHTTPService.remove(id);
+      MySwal.fire({
+        title: 'Barbeiro removido com sucesso!',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 4000,
+        showCloseButton: true,
+        color: 'white',
+        background: 'green',
+      });
+    } catch (error: any) {
+      console.log(error.response.data.message);
+      MySwal.fire({
+        title: error.response.data.message === 'Only the administrator can remove new barbers' 
+        ? 'Somente administradores podem excluir barbeiros'
+        : error.response.data.message === 'Barber not found'
+        ? 'Barbeiro não encontrado.'
+        : 'Esse barbeiro possui serviços cadastrados.',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 8000,
+        showCloseButton: true,
+        color: 'white',
+        background: '#b13838',
+      });
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <BarberContext.Provider
       value={{
@@ -103,6 +139,7 @@ function BarberProvider({ children }: IBarberProviderProps) {
         setBarber,
         setLoading,
         findAll,
+        remove,
       }}
     >
       {children}
