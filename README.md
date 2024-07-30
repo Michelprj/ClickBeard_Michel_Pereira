@@ -98,6 +98,12 @@ Caso queira uma visão geral da aplicação você poderá executar o seguinte co
   npx @compodoc/compodoc -p tsconfig.json -s
   ```
   <i>Abra seu navegador e navegue até http://localhost:8080 .</i>
+  
+## Testes
+Para executar os testes basta inserir o seguinte comando no terminal:
+  ```sh
+  npm test
+  ```
 
 ## Comandos Úteis
 
