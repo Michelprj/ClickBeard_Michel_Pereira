@@ -3,5 +3,6 @@ export const protectedRoutes = [
   '/mySchedule',
   '/registerBarber',
   '/allSchedules',
+  '/profile',
 ];
 export const authRoutes = ['/'];
