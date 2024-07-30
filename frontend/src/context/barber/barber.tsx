@@ -6,7 +6,6 @@ import {
   SetStateAction,
   useState,
 } from 'react';
-import { useRouter } from 'next/navigation';
 
 import {
   CreateCredentials,
@@ -29,7 +28,6 @@ type BarberContextData = {
 export const BarberContext = createContext({} as BarberContextData);
 
 function BarberProvider({ children }: IBarberProviderProps) {
-  const { push } = useRouter();
   const [loading, setLoading] = useState(false);
   const [barber, setBarber] = useState<IBarber>({} as IBarber);
   const MySwal = withReactContent(Swal);

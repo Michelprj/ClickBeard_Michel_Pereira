@@ -68,7 +68,8 @@ export default function MySchedule() {
 
               { schedules.map((schedule: any, index) => (
               <div key={index}>
-                <div  className={`bg-[#0D0D0D] flex flex-col lg:flex-row space-y-8 lg:space-y-none justify-between items-center px-6 py-4 ${ index !== schedules.length - 1 && 'border-b border-[#634518]'} rounded-b`}>
+                <div  className={`bg-[#0D0D0D] flex flex-col lg:flex-row space-y-8 lg:space-y-none justify-between items-center px-6 py-4 
+                  ${ index !== schedules.length - 1 && 'border-b border-[#634518]'} rounded-b`}>
                   <div className="space-y-1 text-sm">
                     <h2><b>Data:</b> { schedule.time }</h2>
                     <h2><b>Barbeiro:</b> { schedule.barber.name }</h2>

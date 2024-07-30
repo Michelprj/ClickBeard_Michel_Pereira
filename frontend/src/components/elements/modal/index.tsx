@@ -1,7 +1,6 @@
 "use client";
 
 import { Transition, Dialog } from "@headlessui/react";
-import Image from "next/image";
 import { Fragment } from "react";
 import { MdOutlineClose } from "react-icons/md";
 

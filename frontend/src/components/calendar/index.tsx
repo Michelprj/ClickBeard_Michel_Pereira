@@ -21,15 +21,8 @@ export default function ComponentsAppsCalendar() {
   const { create: createSchedule, findAll: findAllSchedules, update } = useContext(SchedulesContext);
   const { findAll: findAllBarbers } = useContext(BarberContext);
   
-  const now = new Date();
   const MySwal = withReactContent(Swal);
 
-  const getMonth = (dt: Date, add: number = 0) => {
-    let month = dt.getMonth() + 1 + add;
-    const str = (month < 10 ? "0" + month : month).toString();
-    return str;
-  };
-  
   const [isAddEventModal, setIsAddEventModal] = useState(false);
   const [events, setEvents] = useState<any>([]);
   const [bookingCreated, setBookingCreated] = useState(false);

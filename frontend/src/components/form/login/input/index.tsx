@@ -41,7 +41,8 @@ const Input = <T extends FieldValues>({
               placeholder={placeholder}
               autoComplete="off"
               {...field}
-              className={`w-full bg-[var(--grey-300)] h-6 rounded px-2 py-5 text-black placeholder:text-sm text-sm placeholder:text-[var(--grey-600)] border border-black focus:bg-none ${
+              className={`w-full bg-[var(--grey-300)] h-6 rounded px-2 py-5 text-black placeholder:text-sm 
+                  text-sm placeholder:text-[var(--grey-600)] border border-black focus:bg-none ${
                 error ? 'border-white' : ''
               }`}
             />

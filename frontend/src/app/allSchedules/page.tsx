@@ -60,7 +60,8 @@ export default function AllSchedules() {
       </div>
       {
         schedules.map((schedule: any, index) => (
-          <div key={index} className={`bg-[#0D0D0D] flex justify-between items-center px-6 py-4 ${index !== schedules.length - 1 && 'border-b border-[#634518]'} rounded-b`}>
+          <div key={index} className={`bg-[#0D0D0D] flex justify-between items-center px-6 py-4 
+            ${index !== schedules.length - 1 && 'border-b border-[#634518]'} rounded-b`}>
             <div className="space-y-1 text-sm">
               <h2><b>Data:</b> {schedule.time}</h2>
               <h2><b>Barbeiro:</b> {schedule.barber.name}</h2>

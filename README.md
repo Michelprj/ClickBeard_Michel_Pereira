@@ -6,7 +6,7 @@ ClickBeard é uma aplicação de agendamento para uma barbearia, desenvolvida co
 
 - **Desenvolvido com**: Node.js, NestJS, React, NextJS e Tailwind.
 - **Banco de Dados**: PostgreSQL.
-- **Migrações**: Utiliza TypeORM para migrações de dados.
+- **Migrações e Manipulações**: Utiliza TypeORM para migrações e manipulações de dados.
 - **Autenticação**: Módulo de autenticação com proteção de rotas.
 - **Gerenciamento de Usuários**: Módulo para gerenciamento de usuários (clientes e administradores).
 - **Gerenciamento de Barbeiros**: Módulo para gerenciamento de barbeiros.

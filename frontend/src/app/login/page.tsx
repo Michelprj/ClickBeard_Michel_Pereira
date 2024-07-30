@@ -5,9 +5,8 @@ import { LoginFormData, loginSchema } from "@/schemas/login";
 import Image from "next/image";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from "react-hook-form";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useAuth } from "@/context/auth/auth";
-import { api } from "@/infrastructure/api/axios";
 import Loader from "@/components/elements/loader";
 import Input from "@/components/form/login/input";
 

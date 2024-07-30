@@ -35,7 +35,8 @@ export default function Home() {
 
           <div className="w-full flex flex-wrap justify-center gap-12 py-8">
             { valuesList.map(({ title, price, description }, index) => (
-              <div key={index} className="bg-[var(--card-color)] h-[300px] py-8 w-60 text-black space-y-2 flex flex-col items-center justify-between rounded-lg shadow-lg">
+              <div key={index} className="bg-[var(--card-color)] h-[300px] py-8 w-60 text-black space-y-2 flex 
+                  flex-col items-center justify-between rounded-lg shadow-lg">
                 <div>
                   <h1 className="text-lg">{title}</h1>
                   <p className="text-3xl font-bold">R$ {price}</p>
