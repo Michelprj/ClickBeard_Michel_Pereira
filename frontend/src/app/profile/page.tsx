@@ -92,7 +92,7 @@ export default function Profile() {
           className="z-10"
         />
 
-        <div className="bg-[#0D0D0D] w-11/12 md:w-9/12 lg:w-7/12 rounded z-20 flex flex-col items-center overflow-x-auto max-h-[750px]">
+        <div className="bg-[#0D0D0D] w-11/12 md:w-9/12 lg:w-7/12 rounded z-20 flex flex-col items-center overflow-x-auto my-20 min-h-5/6">
           <div className="bg-[#222] py-4 rounded-t text-center w-full">
             <h1 className="text-2xl font-bold">Meu perfil</h1>
           </div>

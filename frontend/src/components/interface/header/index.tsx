@@ -86,7 +86,7 @@ export default function Header({ isHome }: HeaderProps) {
           onClick={() => push("/allBarbers")}
           className="border border-[var(--primary-color)] text-white hover:bg-white hover:text-black"
         >
-          Editar barbeiros
+          Barbeiros
         </Button>
       )}
       <div className="space-x-4 flex items-center justify-center my-8 lg:my-0">

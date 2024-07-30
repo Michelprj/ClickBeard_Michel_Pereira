@@ -55,7 +55,7 @@ export default function AllBarbers() {
             <h1 className="text-2xl font-bold">Não possuem barbeiros cadastrados</h1>
           </div>
         ) : (
-          <div className="bg-[#0D0D0D] w-11/12 lg:w-10/12 h-[650px] overflow-y-auto rounded">
+          <div className="bg-[#0D0D0D] w-11/12 lg:w-10/12 min-h-5/6 my-20 overflow-y-auto rounded">
             <div className="bg-[#222] py-4 text-center rounded-t">
               <h1 className="text-2xl font-bold">Barbeiros</h1>
             </div>

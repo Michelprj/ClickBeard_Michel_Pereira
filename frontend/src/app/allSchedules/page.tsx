@@ -78,7 +78,7 @@ export default function AllSchedules() {
   return (
     <div className="bg-[#181717] min-h-screen flex items-center justify-center">
       <Header />
-      <div className="bg-[#0D0D0D] w-10/12 h-[650px] overflow-y-auto rounded">
+      <div className="bg-[#0D0D0D] w-10/12 my-20 min-h-5/6 rounded">
         {todaySchedules.length > 0 && renderSchedules(todaySchedules, "Hoje")}
         {upcomingSchedules.length > 0 && renderSchedules(upcomingSchedules, "Próximos dias")}
         {todaySchedules.length === 0 && upcomingSchedules.length === 0 && (

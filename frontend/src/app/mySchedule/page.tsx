@@ -53,15 +53,15 @@ export default function MySchedule() {
   }
 
   return (
-    <div className="bg-[#181717] min-h-screen flex items-center justify-center">
+    <div className="bg-[#181717] min-h-screen h-screen flex items-center justify-center">
       <Header />
       {
         schedules.length === 0 ? (
-          <div className="bg-[#0D0D0D] w-10/12 h-[650px] rounded flex items-center justify-center">
+          <div className="bg-[#0D0D0D] w-10/12 h-4/6 rounded flex items-center justify-center">
             <h1 className="text-2xl font-bold">Você não possui agendamentos</h1>
           </div>
         ) : (
-          <div className="bg-[#0D0D0D] w-11/12 lg:w-10/12 h-[650px] overflow-y-auto rounded">
+          <div className="bg-[#0D0D0D] w-11/12 lg:w-10/12 overflow-y-auto mt-24 min-h-5/6 h-5/6 rounded">
             <div className="bg-[#222] py-4 text-center rounded-t">
               <h1 className="text-2xl font-bold">Meus agendamentos</h1>
             </div>

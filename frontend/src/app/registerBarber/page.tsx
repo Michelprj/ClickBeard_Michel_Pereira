@@ -73,11 +73,11 @@ export default function RegisterBarber() {
 
   return (
     <main className="flex min-h-screen flex-col">
-      <section className="flex min-h-screen flex-col justify-center items-center bg-black">
+      <section className="flex min-h-screen h-screen flex-col justify-center items-center bg-black">
         <Header />
         <Image src="/background-login.png" alt="Image Login" layout="fill" objectFit="cover" className="z-10" />
 
-        <div className="bg-[#0D0D0D] w-11/12 md:w-9/12 lg:w-7/12 rounded z-20 flex flex-col items-center">
+        <div className="bg-[#0D0D0D] w-11/12 md:w-9/12 lg:w-7/12 rounded z-20 flex flex-col items-center min-h-5/6 overflow-y-auto my-20">
           <div className="bg-[#222] py-4 rounded-t text-center w-full">
             <h1 className="text-2xl font-bold">Cadastrar barbeiros</h1>
           </div>
