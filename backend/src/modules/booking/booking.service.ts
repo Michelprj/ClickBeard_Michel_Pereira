@@ -132,7 +132,7 @@ export class BookingService {
 
     const bookingUpdated = {
       ...booking,
-      is_confirmed: false,
+      isConfirmed: false,
     };
 
     return await this.bookingRepository.update(id, bookingUpdated);

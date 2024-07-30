@@ -9,5 +9,5 @@ export class CreateBookingDto {
 
   @IsBoolean()
   @IsOptional()
-  is_confirmed: boolean;
+  isConfirmed: boolean;
 }
