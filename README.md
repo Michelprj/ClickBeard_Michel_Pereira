@@ -50,6 +50,17 @@ ClickBeard é uma aplicação de agendamento para uma barbearia, desenvolvida co
   - Frontend: http://localhost:3000
   - Backend: http://localhost:3003
 
+## Informações importantes
+
+Ao subir a aplicação o banco de dados será populado com dois cadastros de usuários.
+- Para realizar login com o perfil de <b>Administrador</b> use os seguintes dados:
+  ```sh
+  Email: admin@example.com
+  Senha: adminpass
+- Para realizar login com o perfil de <b>Usuário</b> use os seguintes dados:
+  ```sh
+  Email: user@example.com
+  Senha: userpass
 
 ## Estrutura de Pastas
 
@@ -85,4 +96,3 @@ ClickBeard é uma aplicação de agendamento para uma barbearia, desenvolvida co
 - Parar os containers Docker
    ```sh
    docker compose down
-
