@@ -61,39 +61,41 @@ export default function MySchedule() {
             <h1 className="text-2xl font-bold">Você não possui agendamentos</h1>
           </div>
         ) : (
-          <div className="bg-[#0D0D0D] w-10/12 h-[650px] overflow-y-auto rounded">
+          <div className="bg-[#0D0D0D] w-11/12 lg:w-10/12 h-[650px] overflow-y-auto rounded">
             <div className="bg-[#222] py-4 text-center rounded-t">
               <h1 className="text-2xl font-bold">Meus agendamentos</h1>
             </div>
-            {
-              schedules.map((schedule: any, index) => (
-              <div key={index} className={`bg-[#0D0D0D] flex justify-between items-center px-6 py-4 ${ index !== schedules.length - 1 && 'border-b border-[#634518]'} rounded-b`}>
-                <div className="space-y-1 text-sm">
-                  <h2><b>Data:</b> { schedule.time }</h2>
-                  <h2><b>Barbeiro:</b> { schedule.barber.name }</h2>
-                  <h2><b>Serviços:</b> { schedule.specialtyType }</h2>
-                </div>
 
-                <button
-                  className="bg-[var(--primary-color)] text-white font-semibold px-4 py-2 rounded"
-                  onClick={() => setIsModalOpen(true)}
-                >
-                  Cancelar agendamento
-                </button>
-                { isModalOpen && 
-                  <Modal 
-                    open={isModalOpen}
-                    setOpen={setIsModalOpen}
-                    onDeleteModal={() => cancelScheduleById(String(schedule.id))}
-                    textMain="Deseja realmente cancelar o agendamento?"
-                    titleModal="Cancelar agendamento"
-                    buttonPrincipalText="Cancelar agendamento"
-                  />
-                }
+              { schedules.map((schedule: any, index) => (
+              <div key={index}>
+                <div  className={`bg-[#0D0D0D] flex flex-col lg:flex-row space-y-8 lg:space-y-none justify-between items-center px-6 py-4 ${ index !== schedules.length - 1 && 'border-b border-[#634518]'} rounded-b`}>
+                  <div className="space-y-1 text-sm">
+                    <h2><b>Data:</b> { schedule.time }</h2>
+                    <h2><b>Barbeiro:</b> { schedule.barber.name }</h2>
+                    <h2><b>Serviços:</b> { schedule.specialtyType }</h2>
+                  </div>
+
+                  <button
+                    className="bg-[var(--primary-color)] text-white font-semibold px-4 py-2 rounded"
+                    onClick={() => setIsModalOpen(true)}
+                  >
+                    Cancelar agendamento
+                  </button>
+                </div>
+                  { isModalOpen && 
+                    <Modal 
+                      open={isModalOpen}
+                      setOpen={setIsModalOpen}
+                      onDeleteModal={() => cancelScheduleById(String(schedule.id))}
+                      textMain="Deseja realmente cancelar o agendamento?"
+                      titleModal="Cancelar agendamento"
+                      buttonPrincipalText="Cancelar agendamento"
+                    />
+                  }
               </div>
-              ))
-            }            
-          </div>
+                ))
+              }            
+            </div>
         )
       }
 
