@@ -74,6 +74,21 @@
       "json",
       "ts"
     ],
+    "coveragePathIgnorePatterns": [
+      "./node_modules",
+      "./dist",
+      "./documentation",
+      "./src/database",
+      "./src/libs",
+      "./coverage",
+      "/src/modules/.*\\.module\\.ts$",
+      "/src/modules/.*\\.dto\\.ts$",
+      "/src/modules/.*\\.guard\\.ts$",
+      ".eslintrc.js",
+      ".main.ts",
+      "./test",
+      "./src/app.module.ts"
+    ],
     "rootDir": ".",
     "testMatch": [
     "<rootDir>/test/**/*.(spec|test).ts"
