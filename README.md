@@ -93,6 +93,11 @@ Para acessar a documentação <b>Swagger</b> da api basta acessar:
   ```sh
   http://localhost:3003/api
   ```
+Caso queira uma visão geral da aplicação você poderá executar o seguinte comando:
+  ```sh
+  npx @compodoc/compodoc -p tsconfig.json -s
+  ```
+  <i>Abra seu navegador e navegue até http://localhost:8080 .</i>
 
 ## Comandos Úteis
 
