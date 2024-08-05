@@ -16,10 +16,12 @@ import CustomSelect from "../form/select/selectBox";
 import Select from "../form/select/select";
 import { BarberContext } from "@/context/barber/barber";
 import { IBarber } from "@/context/barber/interfaces";
+import { useAuth } from "@/context/auth/auth";
 
 export default function ComponentsAppsCalendar() {
   const { create: createSchedule, findAll: findAllSchedules, update } = useContext(SchedulesContext);
   const { findAll: findAllBarbers } = useContext(BarberContext);
+  const { authInfo } = useAuth();
   
   const MySwal = withReactContent(Swal);
 
@@ -180,7 +182,7 @@ export default function ComponentsAppsCalendar() {
   const updateEvent = async () => {
     const { user } = JSON.parse(localStorage.getItem('user') || '{}');
 
-    if (user.id !== params.userId) {
+    if (!authInfo.user.isAdmin && user.id !== params.userId) {
       MySwal.fire({
         title: 'Você não tem permissão para editar esse agendamento',
         toast: true,
