@@ -63,6 +63,8 @@ function SchedulesProvider({ children }: ISchedulesProviderProps) {
         ?  'O horário de reserva deve ser entre 08:00 e 17:30' 
         : error.response.data.message === "Barber not found" 
         ? 'Barbeiro não encontrado'
+        : error.response.data.message === "Booking time cannot be in the past"
+        ? 'O horário de reserva escolhido já passou'
         : 'O Barbeiro escolhido já possui esse horário reservado',
         toast: true,
         position: 'top-end',

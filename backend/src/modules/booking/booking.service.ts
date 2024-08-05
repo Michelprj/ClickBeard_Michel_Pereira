@@ -45,6 +45,13 @@ export class BookingService {
       );
     }
 
+    if (
+      (bookingTime.isAfter(openingTime) || bookingTime.isBefore(closingTime)) &&
+      bookingTime.isBefore(moment())
+    ) {
+      throw new BadRequestException('Booking time cannot be in the past');
+    }
+
     const busyBarber = barberServices.some((service) => {
       const serviceDate = moment(service.time).format('DD-MM-YYYY');
       const createDate = moment(createBookingDto.time).format('DD-MM-YYYY');
